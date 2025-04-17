@@ -7,7 +7,6 @@
     <meta name="author" content="20210968"> <!--작성자를 명시하여 누가 작성했는지지-->
     <meta name="keywords" content="computer"> <!--검색 시 이 문서가 검색될 가능성 높아짐짐-->
     <base href="http://127.0.0.1:5500"> <!--상대경로 사용 시 기준이 되는 기본 url 경로-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <style>
         table {
             font-size: 15pt;
@@ -19,12 +18,21 @@
             color:#3a352f
         }
     </style>
-
-
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/Basic_js_test.js"></script>
+    <script type="text/javascript" src="js/search.js" defer></script>
+  </head>
     <body style="background-color: #3a352f;"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
         <nav class="navbar navbar-expand-lg custom-navbar" >
-            <div class="container-fluid">
+            <div class="container-fluid ">
+              <nav class="navbar bg-body-tertiary ">
+                <div class="container-fluid" style="background-color: #3a352f;">
+                  <a class="navbar-brand"  >
+                    <img src="image/icon.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
+                  </a>
+                </div>
+              </nav>
               <a class="navbar-brand" >카테고리</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -47,16 +55,18 @@
                     </ul>
                   </li>
                 </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="내용을 입력하세요" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">검색</button>
-                </form>
+                <nav class="navbar bg-body-tertiary">
+                  <div class="container-fluid">
+                    <a class="navbar-brand">Navbar</a>
+                    <form class="d-flex" role="search">
+                      <input class="form-control me-2" type="search" placeholder="내용을 입력하세요" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit" id="search_button_msg">검색</button>
+                    </form>
+                  </div>
+                </nav>
               </div>
             </div>
           </nav>
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-        
         <div style="display: flex; justify-content: center;">
             <img src="image/face.png" width="100" height="120">
         </div>
@@ -65,26 +75,34 @@
         </div>
         <hr>
         <div style="display: flex; justify-content: center;">
-            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600"></a> <!--target="_blank" 새탭에서 열기-->
+            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600" class="img-fluid"></a> <!--target="_blank" 새탭에서 열기-->
         </div>
         <div style="display:flex; justify-content: center;">
-            <table border="1">
+            <table border="1" class="table">
                 <caption>기술 스택</caption><!--제목목-->
+                <thead>
+                    <tr>
+                        <td><font size="5">목록</font></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr height="50" > <!--한줄, 줄의 배경색은 tr에서서-->
-                        <td bgcolor="grey" width="150" ><font size="5">언어</font></td>
-                        <td bgcolor="beige" width="100">python</td>
-                        <td bgcolor="beige" width="100">java</td>
-                        <td bgcolor="beige" width="100">mysql</td>
+                        <td width="150" ><font size="5">언어</font></td>
+                        <td width="100">python</td>
+                        <td width="100">java</td>
+                        <td width="100">mysql</td>
                     </tr>
                     <tr height="50"> <!--한줄-->
-                        <td bgcolor="grey" width="150"><font size="5">프레임워크</font></td>
-                        <td bgcolor="beige" width="100">django</td>
-                        <td bgcolor="beige" colspan="2" width="100">unity</td>
+                        <td width="150"><font size="5">프레임워크</font></td>
+                        <td width="100">django</td>
+                        <td colspan="2" width="100">unity</td>
                     </tr>
                     <tr height="50"> <!--한줄-->
-                        <td bgcolor="grey" width="150"><font size="5">깃허브 주소</font></td>
-                        <td bgcolor="beige" colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
+                        <td width="150"><font size="5">깃허브 주소</font></td>
+                        <td colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
                     </tr>
                 </tbody>
             </table>
