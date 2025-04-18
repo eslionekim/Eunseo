@@ -22,8 +22,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/Basic_js_test.js"></script>
     <script type="text/javascript" src="js/search.js" defer></script>
+    <script type="text/javascript" src="js/data_type.js" defer></script>
+    <script type="text/javascript" src="../js/pop_up.js" defer></script>
   </head>
-    <body style="background-color: #3a352f;"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
+    <body style="background-color: #3a352f;" onload="pop_up()"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
         <nav class="navbar navbar-expand-lg custom-navbar" >
             <div class="container-fluid ">
               <nav class="navbar bg-body-tertiary ">
@@ -58,9 +60,9 @@
                 <nav class="navbar bg-body-tertiary">
                   <div class="container-fluid">
                     <a class="navbar-brand">Navbar</a>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="내용을 입력하세요" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit" id="search_button_msg">검색</button>
+                    <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                      <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                      <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
                     </form>
                   </div>
                 </nav>
@@ -68,14 +70,14 @@
             </div>
           </nav>
         <div style="display: flex; justify-content: center;">
-            <img src="image/face.png" width="100" height="120">
+            <img src="image/face.png" width="100" height="120" onmouseover="over(this)" onmouseout="out(this)">
         </div>
         <div style="display: flex; justify-content: center; ">
             <h1 style= "color: rgb(255, 255, 255);">김은서의 포트폴리오</h1>
         </div>
         <hr>
         <div style="display: flex; justify-content: center;">
-            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600" class="img-fluid"></a> <!--target="_blank" 새탭에서 열기-->
+            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600" class="img-fluid" ></a> <!--target="_blank" 새탭에서 열기-->
         </div>
         <div style="display:flex; justify-content: center;">
             <table border="1" class="table">
