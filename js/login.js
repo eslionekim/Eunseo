@@ -1,8 +1,8 @@
 const check_input = () => {
     const loginForm = document.getElementById('login_form'); //loginform id
     const loginBtn = document.getElementById('login_btn'); //로그인버튼 id
-    const emailInput = document.getElementById('typeEmailX'); //이메일버튼 for
-    const passwordInput = document.getElementById('typePasswordX'); //패스워드버튼 for
+    const emailInput = document.getElementById('typeEmailX'); //이메일버튼 
+    const passwordInput = document.getElementById('typePasswordX'); //패스워드버튼 
     const c = '아이디, 패스워드를 체크합니다';
     alert(c);
     const emailValue = emailInput.value.trim();
