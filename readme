@@ -1,9 +1,58 @@
-##오류 수정
+##7주차_입력필터링
 
-# popup.hmtl이 10초후에 사라질 때 index.html도 같이 사라짐
-원인: pop_up.js에 사라지는 코드가 같이 있었음
-해결: popup_close.js를 따로 파서 코드 분리 (수업시간에도 말씀해주셨는데.. 정신차리자)
+# 로그인 폼, 입력문자 길이,특수문자 제한
+login.js-> check_input 함수
+if (emailValue.length < 5) {
+    alert('아이디는최소5글자이상입력해야합니다.');
+    return false;
+ }
+if (passwordValue.length < 12) {
+    alert('비밀번호는반드시12글자이상입력해야합니다.');
+    return false;
+}
 
-# popup.html 하단에 10초 세는게 안뜸. div로 따로 넣었는데도 안뜸뜸
-원인: 알고보니 js에선 id가 Time인 걸 찾는데 hmtl엔 time이라고 적어서 그런거였음
-해결: id 동일하게 고치치. 대소문자 주의!!
+const hasSpecialChar = passwordValue.match(/[!,@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/)!==null;
+const hasUpperCase = passwordValue.match(/[A-Z]+/) !== null;
+const hasLowerCase = passwordValue.match(/[a-z]+/) !== null;
+변수 추가
+
+if (!hasSpecialChar) { //hasSpecialChar가 false일 때,즉 특수문자 없을때때
+    alert('패스워드는 특수문자를 1개이상 포함해야합니다.');
+    return false;
+}
+
+if (!hasUpperCase || !hasLowerCase) {//hasUpperCase가 false이거나 hasLowerCase가 false일 경우, 즉 대소문자 둘중 하나만 잇을떼
+    alert('패스워드는 대소문자를 1개이상 포함해야합니다.');
+    return false;
+}
+
+#xss방지 팝업창
+login.html-><head>태그-> DOMPurify 라이브러리 활용&복붙 (악성스크립트 제거하는 오픈소스 라이브러리)
+
+login.js-> check_input 함수 앞에 아래 함수 추가
+
+const check_xss = (input) => { (check_xss(객체) 로 쓰일거임,공격가능성잇음 false로 나와)
+const DOMPurify = window.DOMPurify; (DOMPurify가 cdn방식으로 로드되었다고 가정, 이 라이브러리가 포함되어야 정상작동)
+const sanitizedInput = DOMPurify.sanitize(input); (입력값에서 악성코드 제거)
+if (sanitizedInput !== input) { (제거된 악성 코드와 입력값 비교햇을 때 다르다? 그럼 악성코드가 잇엇단증거)
+    alert('XSS 공격 가능성이 있는 입력값을 발견했습니다.');
+    return false;
+}
+// Sanitized된 값 반환
+return sanitizedInput; (없거나 제거된 상태면 정화된 값 반환)
+};
+
+#xss 로그인 금지
+check_input 함수 내부에 아래 코드 추가
+const sanitizedPassword = check_xss(passwordInput);
+ // check_xss 함수로 비밀번호 Sanitize
+const sanitizedEmail = check_xss(emailInput);
+ // check_xss 함수로 이메일 Sanitize
+if (!sanitizedEmail) { (공격가능성잇음 false일테니, !해서 true나오면 return false)
+ // Sanitize된 비밀번호 사용
+    return false;
+}
+if (!sanitizedPassword) {
+ // Sanitize된 비밀번호 사용
+    return false;
+}
