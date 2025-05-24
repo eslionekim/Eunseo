@@ -14,6 +14,7 @@ const check_xss = (input) => {
     };
 
 const check_input = () => {
+    const idsave_check = document.getElementById('idSaveCheck');
     //입력값 받아오기 변수
     const loginForm = document.getElementById('login_form'); //loginform id
     const loginBtn = document.getElementById('login_btn'); //로그인버튼 id
@@ -71,7 +72,55 @@ const check_input = () => {
     //결과
     console.log('이메일:', emailValue);
     console.log('비밀번호:', passwordValue);
+
+    //id 저장 쿠키
+    if(idsave_check.checked==true){ //체크박스에 체크했다면
+        alert("쿠키를 저장합니다.",emailValue);
+        setCookie("id",emailValue,1); //id,이메일입력값,1일 마지노선 저장
+        alert("쿠키 값:"+emailValue);
+    }
+    else{ //체크안했다면
+        setCookie("id",emailValue.value,0); //id,이메일입력값,0일 쿠키삭제
+    }
+
     loginForm.submit();
-};
+}
+
+function setCookie(name,value,expiredays){
+    var date=new Date(); //date: 현재 날짜 가져옴
+    date.setDate(date.getDate()+expiredays); 
+    //만료일=현재날짜(getDate로 받아옴)+지정날짜(expiredays)
+    document.cookie=escape(name)+"="+escape(value)+";expires="+date.toUTCString()+";path=/" + ";SameSite=None; Secure";
+    //쿠키설정=쿠키이름 URI인코딩 = 쿠키 값 URI인코딩 ;expires= 쿠키만료일+ 경로지정인데 /는 모든 경로에서 사용
+}
+
+function getCookie(name){ //name: 검색할 쿠키이름름
+    var cookie=document.cookie; //cookie: 모든 쿠키 문자열로 반환환
+    console.log("쿠키를 요청합니다.");
+    if (cookie!=""){ //쿠키가 뭐라도 있으면
+        var cookie_array=cookie.split("; "); //1=1 ; 2=2; -> [1=1,2=2]
+        //cookie에 저장된 쿠키들을 ; 기준으로 분리해서 배열로 변환
+        for (var index in cookie_array){ //쿠키 배열의 모든 것들을 순회
+            var cookie_name=cookie_array[index].split("="); //=를 기준으로 나누기, [1=1]->[1,1]
+            if (cookie_name[0]=="id"){ //쿠키 이름이 popupYN
+                return cookie_name[1]; //해당 쿠키 값 반환 [0]이 이름, [1]이 값
+            }
+        }
+    }
+    return; //쿠키 없으면 결과 없음음
+}
+
+function init(){
+    const emailInput=document.getElementById('typeEmailX'); //이메일 값 가져오기
+    const idsave_check=document.getElementById('idSaveCheck'); //아이디 기억 체크 가져오기
+    let get_id=getCookie("id"); //id가 이름인 쿠키 값 가져오기
+
+    if(get_id){ //id가 이름인 쿠키 값이 존재한다면
+        emailInput.value=get_id; //이메일 입력필드에 쿠키 값 넣어
+        idsave_check.checked=true; //체크박스에 체크해
+        console.log("아이디를 기억합니다.")
+    }
+}
+
 document.getElementById("login_btn").addEventListener('click', check_input);
     
