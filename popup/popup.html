@@ -11,7 +11,9 @@
     </head>
     <body onload="show_clock();">
         <h1 class="display-1"><i class="bi bi-alarm" style="font-size: 2rem; color: black;"></i> 팝업창 확인<br><br></h1>
-        <h1 class="display-4"><div id="divClock" class="clock"></div></h1>
-        <h1 class="display-4"><div id="Time" class="clock"></div></h1>
+        <h1 class="display-4"><div id="divClock" class="clock"></div></h1> <!--현재 시간-->
+        <h1 class="display-4"><div id="Time" class="clock"></div></h1> <!--닫히기까지 남은 시간-->
+        <input class="form-check-input" type="checkbox" id="check_popup" onclick="closePopup();">
+        <label class="form-check-label" for="flexCheckChecked">하루에 한번만 열기</label>
     </body>
 </html>

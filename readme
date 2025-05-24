@@ -1,30 +1,50 @@
-##7주차 연습문제_로그인 입력길이 제한, 입력 제한
+##7주차 연습문제_데이터 저장(쿠키)
 
-# 이메일 10글자 이하, 패스워드 15글자 이하 수정
-//아이디 길이 제한
-if (emailValue.length <10 ) {
-    alert('아이디는 최소 10글자 이상 입력해야 합니다. ');
-    return false;
-}
-    //패스워드 길이 제한
-if (passwordValue.length < 15) {
-    alert('비밀번호는 반드시 15글자 이상 입력해야 합니다.');
-    return false;
+# pop_up.js-> 변수 시간 수정
+var close_time2 = 50; 
+close_time= setTimeout("close_window()", 50000);
+
+# pop_up.html -> 가장 하단에 아래 코드 추가
+<input class="form-check-input" type="checkbox" id="check_popup" onclick="closePopup();"> //체크박스
+<label class="form-check-label" for="flexCheckChecked">하루에 한번만 열기</label> //그 옆 글씨
+
+# pop_up.js -> pop_up함수 수정
+function pop_up(){ //index.html body태그에서 onload함, 메인페이지 치면 뜨는거거
+    var cookieCheck = getCookie("popupYN"); //getCookie(): 쿠키 값 읽기
+        if (cookieCheck != "N"){ //쿠키 값이 N이 아닐경우
+        window.open("../popup/popup.html", "팝업테스트", "width=400, height=300, top=10, left=10");
+    }
 }
 
-#입력 제한
-//3글자 이상 문자 반복
-const repeatedPattern = /(\w{3,}).*?\1/;
-//2글자 이상 숫자 반복 
-const sequentialNumbers = /(\d{2,})(?=.*\1)/;
-
-//3글자 이상 반복 입력 x
-if (repeatedPattern.test(emailValue) || repeatedPattern.test(passwordValue)) {
-    alert('아이디와 패스워드에 3글자 이상의 동일한 단어를 반복해서 사용할 수 없습니다.');
-    return false;
+# pop_up.js-> 3개 함수 추가
+function setCookie(name,value,expiredays){
+    var date=new Date(); //date: 현재 날짜 가져옴
+    date.setDate(date.getDate()+expiredays); 
+    //만료일=현재날짜(getDate로 받아옴)+지정날짜(expiredays)
+    document.cookie=escape(name)+"="+escape(value)+";expires="+date.toUTCString()+";path=/" + ";SameSite=None; Secure";
+    //쿠키설정=쿠키이름 URI인코딩 = 쿠키 값 URI인코딩 ;expires= 쿠키만료일+ 경로지정인데 /는 모든 경로에서 사용
 }
-// 연속되는 숫자 2개이상 반복 입력x
-if (sequentialNumbers.test(emailValue) || sequentialNumbers.test(passwordValue)) {
-    alert('아이디와 패스워드에 연속된 숫자 2개 이상을 사용할 수 없습니다.');
-    return false;
+
+function getCookie(name){ //name: 검색할 쿠키이름
+    var cookie=document.cookie; //cookie: 모든 쿠키 문자열로 반환환
+    console.log("쿠키를 요청합니다.");
+    if (cookie!=""){ //쿠키가 뭐라도 있으면
+        var cookie_array=cookie.split("; "); //1=1 ; 2=2; -> [1=1,2=2]
+        //cookie에 저장된 쿠키들을 ; 기준으로 분리해서 배열로 변환
+        for (var index in cookie_array){ //쿠키 배열의 모든 것들을 순회
+            var cookie_name=cookie_array[index].split("="); //=를 기준으로 나누기, [1=1]->[1,1]
+            if (cookie_name[0]=="popupYN"){ //쿠키 이름이 popupYN
+                return cookie_name[1]; //해당 쿠키 값 반환 [0]이 이름, [1]이 값
+            }
+        }
+    }
+    return; //쿠키 없으면 결과 없음음
+}
+
+function closePopup(){
+    if(document.getElementById('check_popup').value){//id가 check_popup인 요소.체크박스 선택된 경우
+        setCookie("popupYN","N",1); //쿠키설정(이름,값,만료일1)
+        console.log("쿠키를 설정합니다.");
+        self.close();
+    }
 }
