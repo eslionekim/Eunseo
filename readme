@@ -1,41 +1,39 @@
-##8주차 수업내용_아이디 데이터 저장(쿠키)
+##8주차 연습문제_로그인,로그아웃 데이터 저장(쿠키)
 
-# login.html-> 패스워드 찾기와 로그인 사이에 아래 코드 추가
-<div class="checkbox mb-3">
-    <label>
-    <input type="checkbox" value="remember-me" id="idSaveCheck"> 아이디 기억
-    </label>
-</div>
+# logout.html-> login.js 스크립트 연동
 
-# login.js-> check_input함수 수정
-맨 위
-const idsave_check = document.getElementById('idSaveCheck'); //체크박스 id가져오기
+# login.js-> getCookie
+cookie_name[0]==id -> name으로 수정 (이래야 어떤 쿠키든 얻을 수 있음)
 
-submit위
-//id 저장 쿠키
-    if(idsave_check.checked==true){ //체크박스에 체크했다면
-        alert("쿠키를 저장합니다.",emailValue);
-        setCookie("id",emailValue,1); //id,이메일입력값,1일 마지노선 저장
-        alert("쿠키 값:"+emailValue);
-    }
-    else{ //체크안했다면
-        setCookie("id",emailValue.value,0); //id,이메일입력값,0일 쿠키삭제
-    }
 # login.js-> 아래 함수 추가
-popup.js->setCookie,getCookie 함수 복붙
-getCookie popupYN->id 변경
-
-function init(){
-    const emailInput=document.getElementById('typeEmailX'); //이메일 값 가져오기
-    const idsave_check=document.getElementById('idSaveCheck'); //아이디 기억 체크 가져오기
-    let get_id=getCookie("id"); //id가 이름인 쿠키 값 가져오기
-
-    if(get_id){ //id가 이름인 쿠키 값이 존재한다면
-        emailInput.value=get_id; //이메일 입력필드에 쿠키 값 넣어
-        idsave_check.checked=true; //체크박스에 체크해
-        console.log("아이디를 기억합니다.")
-    }
+// 로그인 횟수 카운트
+function login_count() {
+    let login_cnt = parseInt(getCookie("login_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
+    login_cnt++; // 값 증가
+    setCookie("login_cnt", login_cnt, 7); // 쿠키에 저장 (7일 유효)
+    console.log("로그인 횟수:", login_cnt); // 로그 출력
 }
 
-# login.html->  <body>태그
-<body class="text-center" onload="init();"> 수정
+// 로그아웃 횟수 카운트
+function logout_count() {
+    console.log("logout_count 호출됨"); // 함수 호출 확인
+    let logout_cnt = parseInt(getCookie("logout_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
+    logout_cnt++; // 값 증가
+    setCookie("logout_cnt", logout_cnt, 7); // 쿠키에 저장 (7일 유효)
+    console.log("로그아웃 횟수:", logout_cnt); // 로그 출력
+}
+
+# login.js-> document.getElementById("login_btn").addEventListener('click', check_input); 아래코드로 수정
+(원래는 document로 시작했는데 어떤 페이지에서는 해당 id를 찾아내려고 하니까 오류나서 if문 쓴거야)
+const loginBtn = document.getElementById("login_btn");
+if (loginBtn) {
+    loginBtn.addEventListener('click', function () {
+        check_input();
+        login_count();
+    });
+}
+
+const logoutBtn = document.getElementById("logout_btn");
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout_count);
+}

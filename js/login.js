@@ -94,7 +94,7 @@ function setCookie(name,value,expiredays){
     //쿠키설정=쿠키이름 URI인코딩 = 쿠키 값 URI인코딩 ;expires= 쿠키만료일+ 경로지정인데 /는 모든 경로에서 사용
 }
 
-function getCookie(name){ //name: 검색할 쿠키이름름
+function getCookie(name){ //name: 검색할 쿠키이름
     var cookie=document.cookie; //cookie: 모든 쿠키 문자열로 반환환
     console.log("쿠키를 요청합니다.");
     if (cookie!=""){ //쿠키가 뭐라도 있으면
@@ -102,14 +102,15 @@ function getCookie(name){ //name: 검색할 쿠키이름름
         //cookie에 저장된 쿠키들을 ; 기준으로 분리해서 배열로 변환
         for (var index in cookie_array){ //쿠키 배열의 모든 것들을 순회
             var cookie_name=cookie_array[index].split("="); //=를 기준으로 나누기, [1=1]->[1,1]
-            if (cookie_name[0]=="id"){ //쿠키 이름이 popupYN
-                return cookie_name[1]; //해당 쿠키 값 반환 [0]이 이름, [1]이 값
+            if (cookie_name[0]==name){ //쿠키 이름이 id면
+                return cookie_name[1]; //해당 쿠키 값 반환
             }
         }
     }
     return; //쿠키 없으면 결과 없음음
 }
 
+// 이메일 기억하기 체크 박스 - 페이지 로드될때 실행되는거라 onload필요
 function init(){
     const emailInput=document.getElementById('typeEmailX'); //이메일 값 가져오기
     const idsave_check=document.getElementById('idSaveCheck'); //아이디 기억 체크 가져오기
@@ -122,5 +123,34 @@ function init(){
     }
 }
 
-document.getElementById("login_btn").addEventListener('click', check_input);
+// 로그인 횟수 카운트
+function login_count() {
+    let login_cnt = parseInt(getCookie("login_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
+    login_cnt++; // 값 증가
+    setCookie("login_cnt", login_cnt, 7); // 쿠키에 저장 (7일 유효)
+    console.log("로그인 횟수:", login_cnt); // 로그 출력
+}
+
+// 로그아웃 횟수 카운트
+function logout_count() {
+    console.log("logout_count 호출됨"); // 함수 호출 확인
+    let logout_cnt = parseInt(getCookie("logout_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
+    logout_cnt++; // 값 증가
+    setCookie("logout_cnt", logout_cnt, 7); // 쿠키에 저장 (7일 유효)
+    console.log("로그아웃 횟수:", logout_cnt); // 로그 출력
+}
+
+const loginBtn = document.getElementById("login_btn");
+if (loginBtn) {
+    loginBtn.addEventListener('click', function () {
+        check_input();
+        login_count();
+    });
+}
+
+const logoutBtn = document.getElementById("logout_btn");
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout_count);
+}
+
     
