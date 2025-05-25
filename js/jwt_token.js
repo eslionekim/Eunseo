@@ -1,17 +1,3 @@
-##9주차 수업내용_안전한 인증 JWT
-
-# login.js -> check_input() 함수-> emailValue 변수 선언 아래에 선언
-const payload = {
-        id: emailValue, //이메일 주소를 id필드로 저장장
-        exp: Math.floor(Date.now() / 1000) + 3600 
-        //JWT(로그인 후 지속인증)의 만료시간: 현재 시간/1000=초단위 + 1시간 
-    };
-const jwtToken = generateJWT(payload); //generateJWT(payload):토큰 생성
-
-# login.js -> check_input() 함수-> submit()위에 아래 코드 넣기
-localStorage.setItem('jwt_token', jwtToken); //setItem(key) : 해당 key값에 대한 데이터를 저장
-
-# jwt_token.js 추가 -> login.html/index_login.html에 연동 후 아래 코드 삽입
 // JWT 비밀 키 (실제 운영 환경에서는 복잡한 키 사용 필수)
 const JWT_SECRET = "your_secret_key_here";
  
@@ -67,6 +53,3 @@ function checkAuth() { // 인증 검사 수행
         window.location.href = '../login/login.html'; // 로그인 페이지 이동
     }
 }
-
-# index_login.html-> body태그
-onload="checkAuth(); init_logined(); pop_up();“

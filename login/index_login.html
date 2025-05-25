@@ -27,10 +27,11 @@
     <script type="text/javascript" src="../js/login.js" defer></script>
     <script type="text/javascript" src="../js/crypto.js" defer></script>
     <script type="text/javascript" src="../js/session.js" defer></script>
+    <script type="text/javascript" src="../js/jwt_token.js" defer></script>
     <!--암호화/복호화 crypto라이브러리-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   </head>
-    <body style="background-color: #3a352f;" onload="init_logined();"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
+    <body style="background-color: #3a352f;" onload="checkAuth(); init_logined(); pop_up();"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
         <nav class="navbar navbar-expand-lg custom-navbar" >
             <div class="container-fluid ">
               <nav class="navbar bg-body-tertiary ">

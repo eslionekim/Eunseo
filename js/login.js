@@ -15,6 +15,7 @@ const check_xss = (input) => {
 
 const check_input = () => {
     const idsave_check = document.getElementById('idSaveCheck');
+    
     //입력값 받아오기 변수
     const loginForm = document.getElementById('login_form'); //loginform id
     const loginBtn = document.getElementById('login_btn'); //로그인버튼 id
@@ -26,6 +27,14 @@ const check_input = () => {
     //이메일,패스워드 입력값 공백제거
     const emailValue = emailInput.value.trim();
     const passwordValue = passwordInput.value.trim();
+
+    const payload = {
+        id: emailValue, //이메일 주소를 id필드로 저장장
+        exp: Math.floor(Date.now() / 1000) + 3600 
+        //JWT(로그인 후 지속인증)의 만료시간: 현재 시간/1000=초단위 + 1시간 
+    };
+    const jwtToken = generateJWT(payload); //generateJWT(payload):토큰 생성
+
     
     //특수문자 변수
     const hasSpecialChar = passwordValue.match(/[!,@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/)!==null;
@@ -69,10 +78,6 @@ const check_input = () => {
         return false;
     }
 
-    //결과
-    console.log('이메일:', emailValue);
-    console.log('비밀번호:', passwordValue);
-
     //id 저장 쿠키
     if(idsave_check.checked==true){ //체크박스에 체크했다면
         alert("쿠키를 저장합니다.",emailValue);
@@ -83,7 +88,12 @@ const check_input = () => {
         setCookie("id",emailValue.value,0); //id,이메일입력값,0일 쿠키삭제
     }
 
+    //결과
+    console.log('이메일:', emailValue);
+    console.log('비밀번호:', passwordValue);
+
     session_set();
+    localStorage.setItem('jwt_token', jwtToken);
     loginForm.submit();
 }
 
@@ -145,7 +155,7 @@ function logout_count() {
 //세션 삭제
 function session_del(){
     if(sessionStorage){
-        sessionStorage.removeItem("Session_Storage_test");
+        sessionStorage.removeItem("Session_Storage_id");
         alert("로그아웃 버튼 클릭 확인: 세션 스토리지를 삭제합니다.");
     } else{
         alert("세션 스토리지 지원x");
