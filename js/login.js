@@ -83,6 +83,7 @@ const check_input = () => {
         setCookie("id",emailValue.value,0); //id,이메일입력값,0일 쿠키삭제
     }
 
+    session_set();
     loginForm.submit();
 }
 
@@ -121,6 +122,7 @@ function init(){
         idsave_check.checked=true; //체크박스에 체크해
         console.log("아이디를 기억합니다.")
     }
+    session_check();
 }
 
 // 로그인 횟수 카운트
@@ -140,16 +142,29 @@ function logout_count() {
     console.log("로그아웃 횟수:", logout_cnt); // 로그 출력
 }
 
+//세션 삭제
+function session_del(){
+    if(sessionStorage){
+        sessionStorage.removeItem("Session_Storage_test");
+        alert("로그아웃 버튼 클릭 확인: 세션 스토리지를 삭제합니다.");
+    } else{
+        alert("세션 스토리지 지원x");
+    }
+}
+
+//로그인, 로그아웃 횟수 변수수
 const loginBtn = document.getElementById("login_btn");
+const logoutBtn = document.getElementById("logout_btn");
+
+//로그인, 로그아웃 횟수
 if (loginBtn) {
     loginBtn.addEventListener('click', function () {
         check_input();
         login_count();
     });
 }
-
-const logoutBtn = document.getElementById("logout_btn");
 if (logoutBtn) {
+    session_del();
     logoutBtn.addEventListener('click', logout_count);
 }
 

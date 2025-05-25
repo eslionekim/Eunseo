@@ -1,39 +1,38 @@
-##8주차 연습문제_로그인,로그아웃 데이터 저장(쿠키)
+##8주차 응용문제_로그인 유지
 
-# logout.html-> login.js 스크립트 연동
+# session.js추가-> login.html에 스크립트 연결
 
-# login.js-> getCookie
-cookie_name[0]==id -> name으로 수정 (이래야 어떤 쿠키든 얻을 수 있음)
-
-# login.js-> 아래 함수 추가
-// 로그인 횟수 카운트
-function login_count() {
-    let login_cnt = parseInt(getCookie("login_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
-    login_cnt++; // 값 증가
-    setCookie("login_cnt", login_cnt, 7); // 쿠키에 저장 (7일 유효)
-    console.log("로그인 횟수:", login_cnt); // 로그 출력
+# session.js-> 아래 코드 추가
+function session_set(){ //로그인 할 경우 데이터 저장
+    let session_id=document.querySelector("#typeEmailX");//getElementByid는 id만 가져오지만 이건 css기반 id,클래스,태그 등 다양한 요소 가능
+    if(sessionStorage){ //세션동안 데이터 저장,유지, 브라우저가 이 객체를 지원하는지 확인
+        sessionStorage.setItem("Session_Storage_test",session_id.value); //sessionStorage.setItem(key,value):키,값을 사용해 데이터 저장
+    }  else{
+        alert("로컬 스토리지 지원x");
+    }
 }
 
-// 로그아웃 횟수 카운트
-function logout_count() {
-    console.log("logout_count 호출됨"); // 함수 호출 확인
-    let logout_cnt = parseInt(getCookie("logout_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
-    logout_cnt++; // 값 증가
-    setCookie("logout_cnt", logout_cnt, 7); // 쿠키에 저장 (7일 유효)
-    console.log("로그아웃 횟수:", logout_cnt); // 로그 출력
+function session_get(){ //데이터 읽기
+    if(sessionStorage){
+        return
+    } else {
+    alert("세션 스토리지 지원 x");
+    }
 }
 
-# login.js-> document.getElementById("login_btn").addEventListener('click', check_input); 아래코드로 수정
-(원래는 document로 시작했는데 어떤 페이지에서는 해당 id를 찾아내려고 하니까 오류나서 if문 쓴거야)
-const loginBtn = document.getElementById("login_btn");
-if (loginBtn) {
-    loginBtn.addEventListener('click', function () {
-        check_input();
-        login_count();
-    });
+function session_check() { //검사해서 만약 데이터가 있으면 이미 로그인되었다하고 로그인된 페이지로 이동
+    if (sessionStorage.getItem("Session_Storage_test")) { //sessionStorage.getItem(key):키에 해당하는 값 가져옴
+        alert("이미 로그인 되었습니다.");
+        location.href='../login/index_login.html'; // 로그인된 페이지로 이동
+    }
 }
 
-const logoutBtn = document.getElementById("logout_btn");
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', logout_count);
-}
+# login.js -> check_input함수에 아래 글씨 추가
+로그인 하면 폼제출되는데 이때 세션도 저장하려고
+    session_set();
+    loginForm.submit();
+
+
+# login.js-> init함수에 아래 글씨 추가
+이메일 기억하는 체크박스로, 메인화면 불러올 때 자동으로 onload되는데 이 때 세션검사해서 이미 로그인한거면 로그인했다고 떠야해서
+    session_check();
