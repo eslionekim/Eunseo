@@ -152,7 +152,7 @@ function session_del(){
     }
 }
 
-//로그인, 로그아웃 횟수 변수수
+//로그인, 로그아웃 횟수 변수
 const loginBtn = document.getElementById("login_btn");
 const logoutBtn = document.getElementById("logout_btn");
 

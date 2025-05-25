@@ -1,38 +1,19 @@
-##8주차 응용문제_로그인 유지
+##8주차 응용문제_세션 스토리지 로그아웃
 
-# session.js추가-> login.html에 스크립트 연결
-
-# session.js-> 아래 코드 추가
-function session_set(){ //로그인 할 경우 데이터 저장
-    let session_id=document.querySelector("#typeEmailX");//getElementByid는 id만 가져오지만 이건 css기반 id,클래스,태그 등 다양한 요소 가능
-    if(sessionStorage){ //세션동안 데이터 저장,유지, 브라우저가 이 객체를 지원하는지 확인
-        sessionStorage.setItem("Session_Storage_test",session_id.value); //sessionStorage.setItem(key,value):키,값을 사용해 데이터 저장
-    }  else{
-        alert("로컬 스토리지 지원x");
-    }
-}
-
-function session_get(){ //데이터 읽기
+# ogin.js-> 아래코드 삽입
+//세션 삭제
+function session_del(){
     if(sessionStorage){
-        return
-    } else {
-    alert("세션 스토리지 지원 x");
+        sessionStorage.removeItem("Session_Storage_test");
+        alert("로그아웃 버튼 클릭 확인: 세션 스토리지를 삭제합니다.");
+    } else{
+        alert("세션 스토리지 지원x");
     }
 }
 
-function session_check() { //검사해서 만약 데이터가 있으면 이미 로그인되었다하고 로그인된 페이지로 이동
-    if (sessionStorage.getItem("Session_Storage_test")) { //sessionStorage.getItem(key):키에 해당하는 값 가져옴
-        alert("이미 로그인 되었습니다.");
-        location.href='../login/index_login.html'; // 로그인된 페이지로 이동
-    }
+
+# login.js-> if(logoutBtn)-> session_del()추가
+if (logoutBtn) {
+    session_del();
+    logoutBtn.addEventListener('click', logout_count);
 }
-
-# login.js -> check_input함수에 아래 글씨 추가
-로그인 하면 폼제출되는데 이때 세션도 저장하려고
-    session_set();
-    loginForm.submit();
-
-
-# login.js-> init함수에 아래 글씨 추가
-이메일 기억하는 체크박스로, 메인화면 불러올 때 자동으로 onload되는데 이 때 세션검사해서 이미 로그인한거면 로그인했다고 떠야해서
-    session_check();
