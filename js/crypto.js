@@ -1,8 +1,3 @@
-##9주차 수업내용_세션(암호화,복호화)
-
-# login.html , index_login.html -> login.js/session.js/crypto.js 연동 및 crypto-js라이브러리 복붙
-
-# crypto.js 추가 -> 아래 코드 삽입
 function encodeByAES256(key, data){ 
     const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
         //CryptoJS:암호화복호화 수행 라이브러리, AES.encrypt:AES암호화 수행
@@ -45,46 +40,4 @@ function decrypt_text(){
     const b = this.decodeByAES256(rk, eb); 
     // this.decodeByAES256(rk, eb): decodeByAES256 함수를 호출하여 데이터를 복호화
     console.log(b); 
-}
-
-# session.js -> session.set()함수 추가 및 수정
-function session_set(){
-    let session_id=document.querySelector("#typeEmailX");//getElementByid는 id만 가져오지만 이건 css기반 id,클래스,태그 등 다양한 요소 가능
-    let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
-    if(sessionStorage){ //세션동안 데이터 저장,유지, 브라우저가 이 객체를 지원하는지 확인
-        let en_text = encrypt_text(session_pass.value)
-        sessionStorage.setItem("Session_Storage_id",session_id.value);
-        sessionStorage.setItem("Session_Storage_pass", en_text);
-    }  else{
-        alert("로컬 스토리지 지원x");
-    }
-}
-
-# login.js -> 아래 함수 추가
-function init_logined(){
-    if(sessionStorage){
-        decrypt_text(); // 복호화 함수
-}
-    else{
-        alert("세션 스토리지 지원 x");
-    }
-}
-
-# index_login.html -> body 수정 
-<body style="background-color: black;" onload="init_logined();">
-
-# session.js -> session_get,session_check 수정
-function session_get(){
-    if(sessionStorage){
-        return sessionStorage.getItem("Session_Storage_pass");
-    } else {
-    alert("세션 스토리지 지원 x");
-    }
-}
-
-function session_check() { //세션 검사
-    if (sessionStorage.getItem("Session_Storage_id")) {
-        alert("이미 로그인 되었습니다.");
-        location.href='../login/index_login.html'; // 로그인된 페이지로 이동
-    }
 }

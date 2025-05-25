@@ -17,15 +17,20 @@
             background-color: rgb(191, 191, 191);
             color:#3a352f
         }
-    </style>
+    </style> 
+    <!--부트스트랩-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/Basic_js_test.js"></script>
+    <!--자바스크립트-->
     <script type="text/javascript" src="js/search.js" defer></script>
-    <script type="text/javascript" src="js/data_type.js" defer></script>
     <script type="text/javascript" src="../js/pop_up.js" defer></script>
+    <script type="text/javascript" src="../js/login.js" defer></script>
+    <script type="text/javascript" src="../js/crypto.js" defer></script>
+    <script type="text/javascript" src="../js/session.js" defer></script>
+    <!--암호화/복호화 crypto라이브러리-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
   </head>
-    <body style="background-color: #3a352f;" onload="pop_up()"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
+    <body style="background-color: #3a352f;" onload="init_logined();"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
         <nav class="navbar navbar-expand-lg custom-navbar" >
             <div class="container-fluid ">
               <nav class="navbar bg-body-tertiary ">
