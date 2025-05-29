@@ -281,8 +281,15 @@ if (loginBtn) {
 }
 
 if (logoutBtn) {
-    session_del();
-    logoutBtn.addEventListener('click', logout_count);
+    logoutBtn.addEventListener('click', function () {
+        // 쿠키와 세션 삭제
+        session_del();
+        logout_count();
+
+        // JWT 토큰 삭제
+        localStorage.removeItem('jwt_token');
+        alert("로그아웃 완료: JWT 토큰이 삭제되었습니다.");
+    });
 }
 
 function init_logined(){
