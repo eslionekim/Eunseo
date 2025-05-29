@@ -1,72 +1,133 @@
-##9주차 수업내용_안전한 인증 JWT
+##8주차 연습문제_로그인 실패 
 
-# login.js -> check_input() 함수-> emailValue 변수 선언 아래에 선언
-const payload = {
-        id: emailValue, //이메일 주소를 id필드로 저장장
-        exp: Math.floor(Date.now() / 1000) + 3600 
-        //JWT(로그인 후 지속인증)의 만료시간: 현재 시간/1000=초단위 + 1시간 
-    };
-const jwtToken = generateJWT(payload); //generateJWT(payload):토큰 생성
-
-# login.js -> check_input() 함수-> submit()위에 아래 코드 넣기
-localStorage.setItem('jwt_token', jwtToken); //setItem(key) : 해당 key값에 대한 데이터를 저장
-
-# jwt_token.js 추가 -> login.html/index_login.html에 연동 후 아래 코드 삽입
-// JWT 비밀 키 (실제 운영 환경에서는 복잡한 키 사용 필수)
-const JWT_SECRET = "your_secret_key_here";
- 
-function generateJWT(payload) {
-    // 1. 헤더 생성 및 Base64 인코딩
-    const header = { alg: "HS256", typ: "JWT" };
-    const encodedHeader = btoa(JSON.stringify(header));
-    // 2. 페이로드 Base64 인코딩
-    const encodedPayload = btoa(JSON.stringify(payload)); // JSON 형태로 변환 후 인코딩
-    // 3. 서명 생성 (HMAC-SHA256 알고리즘 사용)
-    const signature = CryptoJS.HmacSHA256(`${encodedHeader}.${encodedPayload}`, JWT_SECRET);
-    const encodedSignature = CryptoJS.enc.Base64.stringify(signature);
-    // 4. 최종 토큰 조합
-    return `${encodedHeader}.${encodedPayload}.${encodedSignature}`;
+# login.js-> check_input()함수 -> 로그인 실패 시킬 조건에 login_failed();넣기 
+if (emailValue.length <10 ) {
+    alert('아이디는 최소 10글자 이상 입력해야 합니다. ');
+    login_failed(); // 실패 처리
+    return false;
+ }
+ //패스워드 길이 제한
+if (passwordValue.length < 15) {
+    alert('비밀번호는 반드시 15글자 이상 입력해야 합니다.');
+    login_failed(); // 실패 처리
+    return false;
+ }
+//패스워드 특수문자 포함
+if (!hasSpecialChar) { //hasSpecialChar가 false일 때,즉 특수문자 없을때때
+    alert('패스워드는 특수문자를 1개이상 포함해야합니다.');
+    login_failed(); // 실패 처리
+    return false;
+}
+//패스워드 대소문자 포함
+if (!hasUpperCase || !hasLowerCase) {//hasUpperCase가 false이거나 hasLowerCase가 false일 경우, 즉 대소문자 둘중 하나만 잇을떼떼
+    alert('패스워드는 대소문자를 1개이상 포함해야합니다.');
+    login_failed(); // 실패 처리
+    return false;
 }
 
-function verifyJWT(token) { // 토큰검증
-    try {
-        // 1. 토큰을헤더, 페이로드, 서명으로분할
-        const parts = token.split('.');
-        if (parts.length!== 3) return null; // 형식오류체크
-        const [encodedHeader, encodedPayload, encodedSignature] = parts;
-        // 2. 서명재계산및비교
-        const signature = CryptoJS.HmacSHA256(`${encodedHeader}.${encodedPayload}`, JWT_SECRET);
-        const calculatedSignature= CryptoJS.enc.Base64.stringify(signature);
-        if (calculatedSignature!== encodedSignature) return null; // 서명불일치
-        // 3. 페이로드파싱및만료시간검증
-        const payload = JSON.parse(atob(encodedPayload)); // 디코딩후해석
-        if (payload.exp< Math.floor(Date.now() / 1000)) { // 밀리초단위
-            console.log('보안토큰이만료되었습니다');
-            return null;
+# login.js-> init() ->아래 코드 추가
+const loginBtn = document.getElementById('login_btn'); // 로그인 버튼 가져오기
+const errorContainer = document.getElementById("login_error_message");
+// 오류 메시지 표시할 컨테이너 가져오기
+
+let lockout_time = parseInt(getCookie("login_lockout_time")) || 0; 
+//쿠키에서 잠금 시간 가져오고, 없으면 기본값 0으로 설정
+const lockoutDuration = 4 * 60 * 1000; // 잠금 시간을 4분으로 설정
+const currentTime = Date.now(); // 현재 시간
+
+session_check()위에 아래 코드 추가
+// 잠금 상태 확인
+if (lockout_time && currentTime < lockout_time + lockoutDuration) { //잠금시간 설정, 만료시간보다 이전인지 확인, 
+        const remainingTime = lockout_time + lockoutDuration – currentTime; //남은 시간 계산
+        displayLockoutMessage(remainingTime); // 남은 잠금 시간 표시
+        loginBtn.disabled = true; // 로그인 버튼 비활성화
+    } else { //4분 지나면
+        errorContainer.style.display = "none"; // 오류 메시지 숨기기
+        loginBtn.disabled = false; // 로그인 버튼 활성화
+}
+
+# login.js -> 아래 코드 추가
+function login_failed() {
+    const maxFail = 3; // 최대 실패 횟수
+    const lockoutDuration = 4 * 60 * 1000; // 4분 (밀리초 단위)
+    let fail_count = parseInt(getCookie("login_fail_cnt")) || 0; // 실패 횟수 가져오기, 없으면 0
+    const currentTime = Date.now(); // 현재 시간
+
+    fail_count++; //실패 횟수 증가
+    setCookie("login_fail_cnt", fail_count, 7); // 쿠키저장(쿠키명, 실패 횟수, 7일 기간)
+
+    if (fail_count >= maxFail) { //실패 횟수가 3이상
+        setCookie("login_lockout_time", currentTime, 7); // 쿠키저장(쿠키명, 현재시간, 7일 기간)
+        disableLoginButton(lockoutDuration); // 로그인 버튼 비활성화
+
+        // 즉시 메시지 표시
+        displayLockoutMessage(lockoutDuration); //잠금 메시지 표시(4분간)
+        return; //더 이상 코드 실행x 종료
+    }
+
+    // 실패 메시지 출력
+    displayErrorMessage(`로그인 실패 (${fail_count}/${maxFail})`); // 로그인 실패 ex) 1/3 
+}
+
+
+
+function disableLoginButton(duration) { //로그인 비활(4분간)
+    const loginBtn = document.getElementById("login_btn"); //로그인 버튼 가져오기
+    if (!loginBtn) return; //로그인 버튼 false면 그냥 지나가기
+
+    loginBtn.disabled = true;  //로그인 비활=true
+
+    setTimeout(() => {
+        loginBtn.disabled = false; //로그인 비활=false
+    }, duration); //시간 지나면 true
+}
+
+function displayErrorMessage(message) { //오류 메시지 ui에 표시
+    const errorContainer = document.getElementById("login_error_message"); //오류메시지 가져오기
+    if (errorContainer) { //오류메시지 true면
+        errorContainer.textContent = message; //오류메시지 설정
+        errorContainer.style.display = message ? "block" : "none"; //메시지 있으면 표출하고, 없으면 숨기기
+    }
+}
+
+function displayLockoutMessage(duration) { //잠금 메시지 표시 (4분간)
+    const errorContainer = document.getElementById("login_error_message"); //오류메시지 가져오기
+    const loginBtn = document.getElementById("login_btn"); //로그인 버튼 가져오기
+
+    if (!errorContainer || !loginBtn) return; //잠금끝나면 (오류메시지나 로그인 버튼이 없으면) 함수 종료
+
+    loginBtn.disabled = true; // 로그인 버튼 비활성화
+
+    let remainingTime = duration; // 남은 잠금 시간을 4분으로 초기화
+
+    // 남은 시간 업데이트 함수
+    const updateMessage = () => { //매초 남은 시간 업데이트
+        const minutes = Math.floor(remainingTime / 1000 / 60); //남은 시간을 밀리초->분으로 변환
+        const seconds = Math.ceil((remainingTime / 1000) % 60); //남은 시간에서 초 계산
+        errorContainer.textContent = `로그인 가능 횟수를 초과하였습니다. ${minutes}분 ${seconds}초 동안 로그인이 제한됩니다.`; //잠금 메시지 숫자 설정
+        errorContainer.style.display = "block"; //오류메시지를 화면에 표시
+        if (remainingTime <= 0) { 남은 시간이 없으면
+            clearInterval(timer); // 타이머 정지
+            errorContainer.style.display = "none"; // 메시지 숨기기
+            loginBtn.disabled = false; // 버튼 활성화
+        } else {
+            remainingTime -= 1000; // 남은 시간1초씩 감소
         }
-        return payload; // 검증성공
-    } catch (error) {
-        return null; // 파싱오류또는기타예외처리
-    }
+    };
+    updateMessage(); //메시지 설정, 화면에 표시
+    const timer = setInterval(updateMessage, 1000); //1초 간격으로 반복 실행
 }
 
-function isAuthenticated() { // 사용자 인증 상태 확인
-    const token = localStorage.getItem('jwt_token');
-    if (!token) return false; // 토큰 없음
-    const payload = verifyJWT(token);
-    console.log(payload);
-    return !!payload; // 페이로드 유무로 인증 상태 판단
-}
- 
-function checkAuth() { // 인증 검사 수행
-    const authenticated = isAuthenticated(); // 한 번만 검증 호출
-    if (authenticated) {
-        alert('정상적으로 토큰이 검증되었습니다.');
-    } else {
-        alert('토큰 검증 에러!! 인증되지 않은 접근입니다.');
-        window.location.href = '../login/login.html'; // 로그인 페이지 이동
-    }
-}
+# login.js-> if(loginBtn) 수정
+// 로그인 버튼 이벤트 리스너에 실패 처리 연결
+if (loginBtn) {
+    loginBtn.addEventListener('click', function () { //로그인 버튼에 클릭 이벤트 추가
+        if (!check_input()) { //호출
+            return; // 조건 미충족 시 로그인 실패로 종료	
+        }
 
-# index_login.html-> body태그
-onload="checkAuth(); init_logined(); pop_up();“
+        // 로그인 성공
+        alert('로그인 성공!');
+        login_count(); // 성공 시 로그인 횟수 카운트
+    });
+}
