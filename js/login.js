@@ -275,16 +275,10 @@ const logoutBtn = document.getElementById("logout_btn");
 // 로그인 버튼 이벤트 리스너에 실패 처리 연결
 if (loginBtn) {
     loginBtn.addEventListener('click', function () {
-        if (!check_input()) {
-            return; // 조건 미충족 시 로그인 실패로 종료
-        }
-
-        // 로그인 성공
-        alert('로그인 성공!');
-        login_count(); // 성공 시 로그인 횟수 카운트
+        check_input();
+        login_count();
     });
 }
-
 
 if (logoutBtn) {
     session_del();
