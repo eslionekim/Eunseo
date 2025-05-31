@@ -1,27 +1,3 @@
-##11주차 수업내용_프로필,api
-
-
-## 프로필
-# index_login.html -> 프로필 버튼으로 아래 코드 추가
- <li class="nav-item">
- <a class="nav-link" href="login/profile.html" target='_blank'>기본정보(프로필)</a>
- </li> 
-
-# profile.html 생성
-index.html복붙, 네비게이션 바 아래로 지우고 원하는 템플릿 넣은 후 수정
-
-## api
-카카오 api 사이트 로그인 -> 내 애플리케이션 -> 추가 -> 정보입력 후 저장
-좌측 메뉴 -> 플랫폼 -> h쎄://127.0.0.1:5500
-메뉴 -> 카카오맵 -> On
-메뉴-> 앱키 -> 자바스크립트 키 복사
-https://apis.map.kakao.com/ 접속 후 자바스크립트로 시작
-
-# profile.html -> 아래 코드 삽입 후 키 붙여넣기
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 KEY 입력"></script>
-map.js, profile.css 생성 후 연동
-
-# map.js 생성 후 아래 코드 작성(6페이지 가량)
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
 center: new kakao.maps.LatLng(37.379425, 126.928228), //지도의중심좌표.
@@ -274,26 +250,3 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
-
-# profile.html -> 기술스택 영역 아래 아래 코드 삽입(지도 정보)
-<div id="map" style="width:800px;height:400px;"></div>
-
-# profile.html-> map.js연동한 코드
-LIB 추가: clusterer: 마커용 클러스터러 라이브러리, services: 장소 검색과 주소 좌표 전환, draing: 지도 위 그래픽스 객체 드로잉
-profile.css 생성 후 연동
-&libraries=services,clusterer,drawing 추가 
-
-# profile.html-> 아래 코드 추가(검색창)
-<div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
-            </div>
-        </div>
-
-아래 코드 추가
-<p style="color: rgb(228, 200, 176);"><em>지도를 클릭해주세요!</em></p>
-<div id="clickLatlng"></div>
