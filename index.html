@@ -24,6 +24,8 @@
     <script type="text/javascript" src="js/search.js" defer></script>
     <script type="text/javascript" src="js/data_type.js" defer></script>
     <script type="text/javascript" src="../js/pop_up.js" defer></script>
+    <script type="text/javascript" src="../js/potpolio.js" defer></script>
+
   </head>
     <body style="background-color: #3a352f;" onload="pop_up()"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
         <nav class="navbar navbar-expand-lg custom-navbar" >
@@ -47,16 +49,13 @@
                   <li class="nav-item">
                     <a class="nav-link" target='_blank' id="profileBtn">기본정보(프로필)</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://github.com/eslionekim?tab=repositories">깃허브 주소</a>
-                  </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       프로젝트
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="https://github.com/orgs/sku-likelion11th/teams/hackathon-team1">멋쟁이 사자처럼</a></li>
-                      <li><a class="dropdown-item" href="https://github.com/tjdalsquf8/PIU">졸업작품</a></li>
+                      <li><a class="nav-link"  href="#" onclick="alert('로그인을 하시면 이용하실 수 있습니다.');" >포트폴리오</a></li>
+                      <li><a class="nav-link" href="https://github.com/eslionekim?tab=repositories" target="_blank">깃허브 주소</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -108,15 +107,13 @@
                     </tr>
                     <tr height="50"> <!--한줄-->
                         <td width="150"><font size="5">깃허브 주소</font></td>
-                        <td colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
+                        <td colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo" target='_blank'>  깃허브 바로가기</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <hr>
-        <div style="display: flex; justify-content: center;">
-            <h3 style="font-size: 24px; font-weight: 200; font-style: italic; color: rgb(224, 224, 255);"><a href="index.html">기술 스택</a>   <a href="index.html">학력</a>   <a href="index.html">프로젝트</a></h3>
-        </div>
+        
         
         <div style="display: flex; justify-content: center;">
             <h3 style="font-weight: 120; color: aliceblue;">2025.04.17 내 힘으로 포트폴리오 페이지 만들기 시작</h3>
