@@ -1,5 +1,155 @@
-# 11주차 응용 문제_프로필용 정보 수정
+# 11주차 응용 문제_프로필 페이지 접근제한하기
 
+## 프로필 가는 버튼에 이벤트 리스너를 추가한 후, 세션이 존재하면 프로필 페이지, 세션이 존재하지 않으면 메인 페이지로 이동하도록 구현
+
+## popup.js 아래 코드 추가
+document.getElementById("profileBtn").addEventListener("click", function () {
+    if (sessionStorage.getItem("Session_Storage_id")) {
+        // 세션이 존재하면 프로필 페이지로 이동
+        window.location.href = "login/profile.html";
+    } else {
+        // 세션이 없으면 경고 후 메인 페이지로 이동
+        alert("로그인이 필요합니다.");
+        window.location.href = "../index.html"; // 메인 페이지 경로
+    }
+});
+
+## index_login.html
+id 수정
+<!DOCTYPE html>
+<html lang="ko"> <!--한국어-->
+<html>
+<head>
+    <meta charset="UTF-8"><!--문자 인코딩 유니코드--><title>포트폴리오</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="20210968"> <!--작성자를 명시하여 누가 작성했는지지-->
+    <meta name="keywords" content="computer"> <!--검색 시 이 문서가 검색될 가능성 높아짐짐-->
+    <base href="http://127.0.0.1:5500"> <!--상대경로 사용 시 기준이 되는 기본 url 경로-->
+    <style>
+        table {
+            font-size: 15pt;
+            color:#3a352f
+        }
+
+        .custom-navbar {
+            background-color: rgb(191, 191, 191);
+            color:#3a352f
+        }
+    </style> 
+    <!--부트스트랩-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <!--자바스크립트-->
+    <script type="text/javascript" src="js/search.js" defer></script>
+    <script type="text/javascript" src="../js/pop_up.js" defer></script>
+    <script type="text/javascript" src="../js/login.js" defer></script>
+    <script type="text/javascript" src="../js/crypto.js" defer></script>
+    <script type="text/javascript" src="../js/session.js" defer></script>
+    <script type="text/javascript" src="../js/jwt_token.js" defer></script>
+    <!--암호화/복호화 crypto라이브러리-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  </head>
+    <body style="background-color: #3a352f;" onload="checkAuth(); init_logined(); pop_up();"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
+        <nav class="navbar navbar-expand-lg custom-navbar" >
+            <div class="container-fluid ">
+              <nav class="navbar bg-body-tertiary ">
+                <div class="container-fluid" style="background-color: #3a352f;">
+                  <a class="navbar-brand"  >
+                    <img src="image/icon.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
+                  </a>
+                </div>
+              </nav>
+              <a class="navbar-brand" >카테고리</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500">메인페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="login/profile.html" target='_blank' id="profileBtn">기본정보(프로필)</a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/eslionekim?tab=repositories">깃허브 주소</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      프로젝트
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/orgs/sku-likelion11th/teams/hackathon-team1">멋쟁이 사자처럼</a></li>
+                      <li><a class="dropdown-item" href="https://github.com/tjdalsquf8/PIU">졸업작품</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <nav class="navbar bg-body-tertiary">
+                  <div class="container-fluid">
+                    <a class="navbar-brand">Navbar</a>
+                    <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                      <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                      <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                      <a href="login/logout.html" class="btn btn-outline-success">로그아웃 하기</a>
+                    </form>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </nav>
+        <div style="display: flex; justify-content: center;">
+            <img src="image/face.png" width="100" height="120" onmouseover="over(this)" onmouseout="out(this)">
+        </div>
+        <div style="display: flex; justify-content: center; ">
+            <h1 style= "color: rgb(255, 255, 255);">김은서의 포트폴리오</h1>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600" class="img-fluid" ></a> <!--target="_blank" 새탭에서 열기-->
+        </div>
+        <div style="display:flex; justify-content: center;">
+            <table border="1" class="table">
+                <caption>기술 스택</caption><!--제목목-->
+                <thead>
+                    <tr>
+                        <td><font size="5">목록</font></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height="50" > <!--한줄, 줄의 배경색은 tr에서서-->
+                        <td width="150" ><font size="5">언어</font></td>
+                        <td width="100">python</td>
+                        <td width="100">java</td>
+                        <td width="100">mysql</td>
+                    </tr>
+                    <tr height="50"> <!--한줄-->
+                        <td width="150"><font size="5">프레임워크</font></td>
+                        <td width="100">django</td>
+                        <td colspan="2" width="100">unity</td>
+                    </tr>
+                    <tr height="50"> <!--한줄-->
+                        <td width="150"><font size="5">깃허브 주소</font></td>
+                        <td colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <h3 style="font-size: 24px; font-weight: 200; font-style: italic; color: rgb(224, 224, 255);"><a href="index.html">기술 스택</a>   <a href="index.html">학력</a>   <a href="index.html">프로젝트</a></h3>
+        </div>
+        
+        <div style="display: flex; justify-content: center;">
+            <h3 style="font-weight: 120; color: aliceblue;">2025.04.17 내 힘으로 포트폴리오 페이지 만들기 시작</h3>
+        </div>
+    </body>
+</html>
+
+##  index.html 수정
+id 수정
 <!DOCTYPE html>
 <html lang="ko"> <!--한국어어-->
 <html>
@@ -19,17 +169,15 @@
             background-color: rgb(191, 191, 191);
             color:#3a352f
         }
-
-        .custom-rounded {
-            border-radius: 10px; /* 둥근 정도를 조정 */
-        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <script type="text/javascript" src="../js/map.js" defer></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=726a25554233e017f3ea7f3115266c5e&libraries=services,clusterer,drawing"></script>
-    <link rel="stylesheet" href="../css/profile.css">
-</head>
-    <body style="background-color: #3a352f;" > <!--내용은 body부터라서 여기에 배경style넣는듯-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/Basic_js_test.js"></script>
+    <script type="text/javascript" src="js/search.js" defer></script>
+    <script type="text/javascript" src="js/data_type.js" defer></script>
+    <script type="text/javascript" src="../js/pop_up.js" defer></script>
+  </head>
+    <body style="background-color: #3a352f;" onload="pop_up()"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
         <nav class="navbar navbar-expand-lg custom-navbar" >
             <div class="container-fluid ">
               <nav class="navbar bg-body-tertiary ">
@@ -47,6 +195,9 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500">메인페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" target='_blank' id="profileBtn">기본정보(프로필)</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="https://github.com/eslionekim?tab=repositories">깃허브 주소</a>
@@ -74,73 +225,54 @@
               </div>
             </div>
           </nav>
-          <section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-12 col-xl-4">
-
-        <div class="card" style="border-radius: 15px;">
-          <div class="card-body text-center">
-            <div class="mt-3 mb-4">
-              <img src="/image/face.png"
-                class="custom-rounded img-fluid" style="width: 100px;" />
-            </div>
-            <h4 class="mb-4">KIM EUNSEO</h4>
-            <button type="button" style="margin-bottom: 50px;" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg" onclick="alert('관심 가져주셔서 감사합니다\n편하신 시간대에 연락 바랍니다. \n\n이메일: kimdmstj0510@naver.com')">
-              Contact
-            </button>
-            <p class="text-muted ">GitHub shortcut <span class="mx-2">|</span> <a href="https://github.com/eslionekim?tab=repositories">github</a></p>
-            <p class="text-muted ">Backend Programmer <span class="mx-2">|</span> job</p>
-            <p class="text-muted mb-4">Suwon-si, Gyeonggi-do <span class="mx-2">|</span> address</p>
-            <div class="mb-4 pb-2">
-              
-
-            </div>
-            
-            <div class="d-flex justify-content-between text-center mb-2">
-              <div>
-                <p class="mb-2 h5">language</p>
-                <p class="text-muted mb-0">Python</p>
-                <p class="text-muted mb-0">java</p>
-                <p class="text-muted mb-0">C++</p>
-              </div>
-              <div class="px-3">
-                <p class="mb-2 h5">framework</p>
-                <p class="text-muted mb-0">Django</p>
-                <p class="text-muted mb-0">Unity</p>
-              </div>
-              <div>
-                <p class="mb-2 h5">license</p>
-                <p class="text-muted mb-0">sqld</p>
-              </div>
-            </div>
-          </div>
+        <div style="display: flex; justify-content: center;">
+            <img src="image/face.png" width="100" height="120" onmouseover="over(this)" onmouseout="out(this)">
         </div>
-      <div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
-            </div>
+        <div style="display: flex; justify-content: center; ">
+            <h1 style= "color: rgb(255, 255, 255);">김은서의 포트폴리오</h1>
         </div>
         <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-    </div>
-    </div>
-        <div id="map"></div>
-        <p style="color: rgb(228, 200, 176);"><em>지도를 클릭해주세요!</em></p>
-        <div id="clickLatlng"></div>
-      </div>
-
-    </div>
-    
-  </div>
-</section>
+        <div style="display: flex; justify-content: center;">
+            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600" class="img-fluid" ></a> <!--target="_blank" 새탭에서 열기-->
+        </div>
+        <div style="display:flex; justify-content: center;">
+            <table border="1" class="table">
+                <caption>기술 스택</caption><!--제목목-->
+                <thead>
+                    <tr>
+                        <td><font size="5">목록</font></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr height="50" > <!--한줄, 줄의 배경색은 tr에서서-->
+                        <td width="150" ><font size="5">언어</font></td>
+                        <td width="100">python</td>
+                        <td width="100">java</td>
+                        <td width="100">mysql</td>
+                    </tr>
+                    <tr height="50"> <!--한줄-->
+                        <td width="150"><font size="5">프레임워크</font></td>
+                        <td width="100">django</td>
+                        <td colspan="2" width="100">unity</td>
+                    </tr>
+                    <tr height="50"> <!--한줄-->
+                        <td width="150"><font size="5">깃허브 주소</font></td>
+                        <td colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <h3 style="font-size: 24px; font-weight: 200; font-style: italic; color: rgb(224, 224, 255);"><a href="index.html">기술 스택</a>   <a href="index.html">학력</a>   <a href="index.html">프로젝트</a></h3>
+        </div>
+        
+        <div style="display: flex; justify-content: center;">
+            <h3 style="font-weight: 120; color: aliceblue;">2025.04.17 내 힘으로 포트폴리오 페이지 만들기 시작</h3>
+        </div>
     </body>
 </html>
+

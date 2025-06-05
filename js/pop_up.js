@@ -67,3 +67,14 @@ function closePopup(){
         self.close();
     }
 }
+
+document.getElementById("profileBtn").addEventListener("click", function () {
+    if (sessionStorage.getItem("Session_Storage_id")) {
+        // 세션이 존재하면 프로필 페이지로 이동
+        window.location.href = "login/profile.html";
+    } else {
+        // 세션이 없으면 경고 후 메인 페이지로 이동
+        alert("로그인이 필요합니다.");
+        window.location.href = "../index.html"; // 메인 페이지 경로
+    }
+});
