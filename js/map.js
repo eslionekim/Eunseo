@@ -1,18 +1,18 @@
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
-center: new kakao.maps.LatLng(37.379425, 126.928228), //지도의중심좌표.
-level: 3 //지도의 레벨(확대, 축소 정도)
+    center: new kakao.maps.LatLng(37.379425, 126.928228), //지도의중심좌표.
+    level: 3 //지도의 레벨(확대, 축소 정도)
 };
 var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
 // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 var mapTypeControl = new kakao.maps.MapTypeControl();
- // 지도 타입 컨트롤을 지도에 표시합니다
+// 지도 타입 컨트롤을 지도에 표시합니다
 map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
- // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+// 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
 var zoomControl = new kakao.maps.ZoomControl();
- map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
- // 지도에 지형정보를 표시하도록 지도타입을 추가합니다
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+// 지도에 지형정보를 표시하도록 지도타입을 추가합니다
 map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
 
 // 마커가 표시될 위치입니다 
@@ -20,30 +20,15 @@ var markerPosition  = new kakao.maps.LatLng(37.379486, 126.928233);
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
     position: markerPosition
-});
-
-// 지도에 마커를 표시합니다
-marker.setMap(map);
-// 지도에 클릭 이벤트를 등록합니다
-// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-// 클릭한 위도, 경도 정보를 가져옵니다 
-var latlng = mouseEvent.latLng;
-// 마커 위치를 클릭한 위치로 옮깁니다
-marker.setPosition(latlng);
-var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
-message += '경도는 ' + latlng.getLng() + ' 입니다';
-var resultDiv = document.getElementById('clickLatlng');
-resultDiv.innerHTML = message;
-});
+}), infowindow = new kakao.maps.InfoWindow({zindex:1});;
 
 // 마커를 담을 배열입니다
 var markers = [];
- // 장소 검색 객체를 생성합니다
+// 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
- // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
- // 키워드로 장소를 검색합니다
+// 키워드로 장소를 검색합니다
 searchPlaces();
 
 // 장소 검색 객체를 생성합니다
@@ -51,6 +36,73 @@ var ps = new kakao.maps.services.Places();
 
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+
+// geocoder 객체를 초기화합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 지도에 마커를 표시합니다
+marker.setMap(map);
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+            
+            var content = '<div class="bAddr">' +
+                            '<span class="title">법정동 주소정보</span>' + 
+                            detailAddr + 
+                        '</div>';
+
+            // 마커를 클릭한 위치에 표시합니다 
+            marker.setPosition(mouseEvent.latLng);
+            marker.setMap(map);
+
+            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+        }   
+    });
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng;
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    marker.setPosition(latlng);
+    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    var resultDiv = document.getElementById('clickLatlng');
+    resultDiv.innerHTML = message;
+});
+
+// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'idle', function() {
+    searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+});
+
+function searchAddrFromCoords(coords, callback) {
+    // 좌표로 행정동 주소 정보를 요청합니다
+    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+}
+
+function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+}
+
+// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+function displayCenterInfo(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+        var infoDiv = document.getElementById('centerAddr');
+
+        for(var i = 0; i < result.length; i++) {
+            // 행정동의 region_type 값은 'H' 이므로
+            if (result[i].region_type === 'H') {
+                infoDiv.innerHTML = result[i].address_name;
+                break;
+            }
+        }
+    }    
+}
 
 // 키워드로 장소를 검색합니다
 searchPlaces();
