@@ -1,39 +1,3 @@
-##10주차 수업내용_모듈화, 회원가입
-
-
-# 모듈화
-원하는 html에서 login 제외 나머지 자바스크립트 연동 중지(여기서는 login.html)
-login.html -> <script type=“module” src=“../js/login.js” defer></script> //자바스크립트 통합 관리
-
-login.js -> 최상위에 아래 코드 추가
-import { session_set, session_get, session_check } from ‘./session.js’;
-import { encrypt_text, decrypt_text } from ‘./crypto.js’;
-import { generateJWT, checkAuth } from ‘./jwt_token.js’;
-
-login.html-> <body> 태그에서 onload=“init();” 지우기
-login.js -> init() 함수 아래에 아래코드 추가 (login.html <body>태그 내 onload 지워서)
-document.addEventListener(‘DOMContentLoaded’, () => {
-  init();
-});
-
-session, crypto, jwt_token에서 import 해야할 함수 앞에 export 추가
-
-session.js -> 최상위에 아래 코드 추가 (여기도 함수가 쓰여서)
-import { encrypt_text, decrypt_text } from './crypto.js';
-
-cypto.js -> 최상위에 아래 코드 추가 (여기도 함수가 쓰여서)
-import { session_set, session_get, session_check } from './session.js';
-decodeByAES256,encrypt_text -> this 지우기
-
-login2.js 생성 -> index_login.html 에 추가 (body 없애기)
-document.addEventListener(‘DOMContentLoaded’,()=>{
-    checkAuth();
-    init_logined();
-});
-로 수정
-
-# 회원가입 기능
-join.js
 import { session_set2 } from './session.js';
 
 function join(){ // 회원가입기능

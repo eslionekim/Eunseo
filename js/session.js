@@ -10,6 +10,15 @@ function session_set(){
     }
 }
 
+function session_set2(userObject){
+    if (sessionStorage) { // 세션 스토리지가 지원되는지 확인
+        // 객체를 JSON 문자열로 변환하여 세션 스토리지에 저장
+        sessionStorage.setItem("Session_Storage_user", JSON.stringify(userObject));
+    } else {
+        alert("세션 스토리지를 지원하지 않는 브라우저입니다.");
+    }
+}
+
 function session_get(){
     if(sessionStorage){
         return sessionStorage.getItem("Session_Storage_pass");
