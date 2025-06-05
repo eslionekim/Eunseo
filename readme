@@ -1,111 +1,146 @@
-##10주차 수업내용_모듈화, 회원가입
+# 11주차 응용 문제_프로필용 정보 수정
 
-
-# 모듈화
-원하는 html에서 login 제외 나머지 자바스크립트 연동 중지(여기서는 login.html)
-login.html -> <script type=“module” src=“../js/login.js” defer></script> //자바스크립트 통합 관리
-
-login.js -> 최상위에 아래 코드 추가
-import { session_set, session_get, session_check } from ‘./session.js’;
-import { encrypt_text, decrypt_text } from ‘./crypto.js’;
-import { generateJWT, checkAuth } from ‘./jwt_token.js’;
-
-login.html-> <body> 태그에서 onload=“init();” 지우기
-login.js -> init() 함수 아래에 아래코드 추가 (login.html <body>태그 내 onload 지워서)
-document.addEventListener(‘DOMContentLoaded’, () => {
-  init();
-});
-
-session, crypto, jwt_token에서 import 해야할 함수 앞에 export 추가
-
-session.js -> 최상위에 아래 코드 추가 (여기도 함수가 쓰여서)
-import { encrypt_text, decrypt_text } from './crypto.js';
-
-cypto.js -> 최상위에 아래 코드 추가 (여기도 함수가 쓰여서)
-import { session_set, session_get, session_check } from './session.js';
-decodeByAES256,encrypt_text -> this 지우기
-
-login2.js 생성 -> index_login.html 에 추가 (body 없애기)
-document.addEventListener(‘DOMContentLoaded’,()=>{
-    checkAuth();
-    init_logined();
-});
-로 수정
-
-# 회원가입 기능
-join.js
-import { session_set2 } from './session.js';
-
-function join(){ // 회원가입기능
-    const nameRegex = /^[가-힣]+$/; //한글만 허용
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //올바른 이메일 형식
-    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/; //비번이 8자이상,대소문자숫자 특문 포함
-    let form = document.querySelector("#join_form"); // 로그인폼식별자
-    let name = document.querySelector("#form3Example1c");
-    let email = document.querySelector("#form3Example3c");
-    let password = document.querySelector("#form3Example4c");
-    let re_password= document.querySelector("#form3Example4cd");
-    let agree = document.querySelector("#form2Example3c"); //여기까지 DOM요소 가져오기
-    form.action= "../index.html"; // 로그인성공시이동
-    form.method= "get"; // 전송방식
-    if(name.value.length=== 0 || email.value.length=== 0 || password.value.length=== 0 || re_password.length=== 0){ //하나라도 비어있다면
-        alert("회원가입폼에모든정보를입력해주세요.");
-    }
-    if (!nameRegex.test(name.value)) { // 이름에 한글이 없다면
-        alert("이름은 한글만 입력 가능합니다.");
-        name.focus();
-    return;
-    }
-    if (!emailRegex.test(email.value)) { // 이메일 검사
-        alert("이메일 형식이 올바르지 않습니다.");
-        email.focus();
-        return;
-    }
-    if (!pwRegex.test(password.value)) { // 비밀번호 검사
-        alert("비밀번호는 8자 이상이며 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.");
-        password.focus();
-        return;
-    }
-    if (password.value !== re_password.value) { // 비밀번호 일치 검사
-        alert("비밀번호가 일치하지 않습니다.");
-        re_password.focus();
-        return;
-    }
-    if (!agree.checked) { // 약관 동의 확인
-        alert("약관에 동의하셔야 가입이 가능합니다.");
-        return;
-    }
-    else{
-        const newSignUp = new SignUp(name.value, email.value, password.value, re_password.value); // 회원가입정보객체생성
-
-        session_set2(newSignUp); // 세션저장및객체전달
-        form.submit(); // 폼실행
-    }
-}
-document.getElementById("join_btn").addEventListener('click', join); // 이벤트리스너
-
-class SignUp {
-        constructor(name, email, password, re_password) {
-        // 생성자 함수: 객체 생성 시 회원 정보 초기화
-            this._name = name;
-            this._email = email;
-            this._password = password;
-            this._re_password = re_password;
-    }
-        // 전체 회원 정보를 한 번에 설정하는 함수
-        setUserInfo(name, email, password, re_password) {
-            this._name = name;
-            this._email = email;
-            this._password = password;
-            this._re_password = re_password;
+<!DOCTYPE html>
+<html lang="ko"> <!--한국어어-->
+<html>
+<head>
+    <meta charset="UTF-8"><!--문자 인코딩 유니코드--><title>포트폴리오</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="20210968"> <!--작성자를 명시하여 누가 작성했는지지-->
+    <meta name="keywords" content="computer"> <!--검색 시 이 문서가 검색될 가능성 높아짐짐-->
+    <base href="http://127.0.0.1:5500"> <!--상대경로 사용 시 기준이 되는 기본 url 경로-->
+    <style>
+        table {
+            font-size: 15pt;
+            color:#3a352f
         }
-        // 전체 회원 정보를 한 번에 가져오는 함수
-        getUserInfo() {
-            return {
-                name: this._name,
-                email: this._email,
-                password: this._password,
-                re_password: this._re_password
-            };
+
+        .custom-navbar {
+            background-color: rgb(191, 191, 191);
+            color:#3a352f
         }
-}
+
+        .custom-rounded {
+            border-radius: 10px; /* 둥근 정도를 조정 */
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script type="text/javascript" src="../js/map.js" defer></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=726a25554233e017f3ea7f3115266c5e&libraries=services,clusterer,drawing"></script>
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+    <body style="background-color: #3a352f;" > <!--내용은 body부터라서 여기에 배경style넣는듯-->
+        <nav class="navbar navbar-expand-lg custom-navbar" >
+            <div class="container-fluid ">
+              <nav class="navbar bg-body-tertiary ">
+                <div class="container-fluid" style="background-color: #3a352f;">
+                  <a class="navbar-brand"  >
+                    <img src="image/icon.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
+                  </a>
+                </div>
+              </nav>
+              <a class="navbar-brand" >카테고리</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500">메인페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/eslionekim?tab=repositories">깃허브 주소</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      프로젝트
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/orgs/sku-likelion11th/teams/hackathon-team1">멋쟁이 사자처럼</a></li>
+                      <li><a class="dropdown-item" href="https://github.com/tjdalsquf8/PIU">졸업작품</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <nav class="navbar bg-body-tertiary">
+                  <div class="container-fluid">
+                    <a class="navbar-brand">Navbar</a>
+                    <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                      <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                      <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                      <a href="login/login.html" class="btn btn-outline-success" id="login_btn">로그인 하기</a>
+                    </form>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </nav>
+          <section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-4">
+
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body text-center">
+            <div class="mt-3 mb-4">
+              <img src="/image/face.png"
+                class="custom-rounded img-fluid" style="width: 100px;" />
+            </div>
+            <h4 class="mb-4">KIM EUNSEO</h4>
+            <button type="button" style="margin-bottom: 50px;" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg" onclick="alert('관심 가져주셔서 감사합니다\n편하신 시간대에 연락 바랍니다. \n\n이메일: kimdmstj0510@naver.com')">
+              Contact
+            </button>
+            <p class="text-muted ">GitHub shortcut <span class="mx-2">|</span> <a href="https://github.com/eslionekim?tab=repositories">github</a></p>
+            <p class="text-muted ">Backend Programmer <span class="mx-2">|</span> job</p>
+            <p class="text-muted mb-4">Suwon-si, Gyeonggi-do <span class="mx-2">|</span> address</p>
+            <div class="mb-4 pb-2">
+              
+
+            </div>
+            
+            <div class="d-flex justify-content-between text-center mb-2">
+              <div>
+                <p class="mb-2 h5">language</p>
+                <p class="text-muted mb-0">Python</p>
+                <p class="text-muted mb-0">java</p>
+                <p class="text-muted mb-0">C++</p>
+              </div>
+              <div class="px-3">
+                <p class="mb-2 h5">framework</p>
+                <p class="text-muted mb-0">Django</p>
+                <p class="text-muted mb-0">Unity</p>
+              </div>
+              <div>
+                <p class="mb-2 h5">license</p>
+                <p class="text-muted mb-0">sqld</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+    </div>
+        <div id="map"></div>
+        <p style="color: rgb(228, 200, 176);"><em>지도를 클릭해주세요!</em></p>
+        <div id="clickLatlng"></div>
+      </div>
+
+    </div>
+    
+  </div>
+</section>
+    </body>
+</html>
