@@ -10,4 +10,3 @@ function portpolioBtn() {
     }
 }
 
-document.getElementById("downloadBtn").addEventListener("click", portpolioBtn);
