@@ -1,4 +1,4 @@
-## 오류 수정
+## 오류 수정 및 페이지 꾸미기 최최최종
 
 # profile.html
         .map_wrap {
@@ -35,3 +35,106 @@
 기존의 id에 이벤트 리스너로 가는 방안 대신 
 onload를 통해 해당 페이지로 이동했을 때 세션이 있을 경우 페이지에 접속 허용,
 세션이 없을 경우 index.html로 유도
+
+# index.html , index_login.html 수정
+        .table {
+            border-collapse: collapse;
+            width: 80%; /* 테이블의 전체 너비를 80%로 제한 */
+            max-width: 600px; /* 최대 너비를 600px로 제한 */
+            margin: 20px auto; /* 중앙 정렬 */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table caption {
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .table thead tr {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .table td, .table th {
+            padding: 12px 20px;
+            text-align: center;
+            word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+        }
+
+        .table td {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .table tr:nth-child(even) td {
+            background-color: #f9f9f9; /* 모든 줄 배경색을 동일하게 설정 */
+        }
+
+        .table tr:nth-child(odd) td {
+            background-color: #f9f9f9; /* 모든 줄 배경색을 동일하게 설정 */
+        }
+
+        .table tr:hover td {
+            background-color: #ddd;
+        }
+
+        .table td img {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .table td a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .table td a:hover {
+            text-decoration: underline;
+        }
+
+        .table thead td {
+            border-bottom: 2px solid white;
+        }
+
+        .table td:first-child, .table th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .table td:last-child, .table th:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+
+            <table border="1" class="table">
+                <caption>기술 스택</caption>
+                <thead>
+                    <tr>
+                      <td>목록</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>3</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>언어</td>
+                      <td>python</td>
+                      <td>java</td>
+                      <td>mysql</td>
+                    </tr>
+                    <tr>
+                      <td>프레임워크</td>
+                      <td>django</td>
+                      <td colspan="2">unity</td>
+                    </tr>
+                    <tr>
+                      <td>깃허브 주소</td>
+                      <td colspan="3"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo" target="_blank">깃허브 바로가기</a></td>
+                    </tr>
+                </tbody>
+            </table>        

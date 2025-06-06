@@ -8,15 +8,84 @@
     <meta name="keywords" content="computer"> <!--검색 시 이 문서가 검색될 가능성 높아짐짐-->
     <base href="http://127.0.0.1:5500"> <!--상대경로 사용 시 기준이 되는 기본 url 경로-->
     <style>
-        table {
-            font-size: 15pt;
-            color:#3a352f
+        .table {
+            border-collapse: collapse;
+            width: 80%; /* 테이블의 전체 너비를 80%로 제한 */
+            max-width: 600px; /* 최대 너비를 600px로 제한 */
+            margin: 20px auto; /* 중앙 정렬 */
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table caption {
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .table thead tr {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .table td, .table th {
+            padding: 12px 20px;
+            text-align: center;
+            word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+        }
+
+        .table td {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .table tr:nth-child(even) td {
+            background-color: #f9f9f9; /* 모든 줄 배경색을 동일하게 설정 */
+        }
+
+        .table tr:nth-child(odd) td {
+            background-color: #f9f9f9; /* 모든 줄 배경색을 동일하게 설정 */
+        }
+
+        .table tr:hover td {
+            background-color: #ddd;
+        }
+
+        .table td img {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .table td a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .table td a:hover {
+            text-decoration: underline;
+        }
+
+        .table thead td {
+            border-bottom: 2px solid white;
+        }
+
+        .table td:first-child, .table th:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+
+        .table td:last-child, .table th:last-child {
+            border-radius: 0 8px 8px 0;
         }
 
         .custom-navbar {
             background-color: rgb(191, 191, 191);
             color:#3a352f
         }
+        
     </style> 
     <!--부트스트랩-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
@@ -88,30 +157,30 @@
         </div>
         <div style="display:flex; justify-content: center;">
             <table border="1" class="table">
-                <caption>기술 스택</caption><!--제목목-->
+                <caption>기술 스택</caption>
                 <thead>
                     <tr>
-                        <td><font size="5">목록</font></td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
+                      <td>목록</td>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>3</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr height="50" > <!--한줄, 줄의 배경색은 tr에서서-->
-                        <td width="150" ><font size="5">언어</font></td>
-                        <td width="100">python</td>
-                        <td width="100">java</td>
-                        <td width="100">mysql</td>
+                    <tr>
+                      <td>언어</td>
+                      <td>python</td>
+                      <td>java</td>
+                      <td>mysql</td>
                     </tr>
-                    <tr height="50"> <!--한줄-->
-                        <td width="150"><font size="5">프레임워크</font></td>
-                        <td width="100">django</td>
-                        <td colspan="2" width="100">unity</td>
+                    <tr>
+                      <td>프레임워크</td>
+                      <td>django</td>
+                      <td colspan="2">unity</td>
                     </tr>
-                    <tr height="50"> <!--한줄-->
-                        <td width="150"><font size="5">깃허브 주소</font></td>
-                        <td colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
+                    <tr>
+                      <td>깃허브 주소</td>
+                      <td colspan="3"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo" target="_blank">깃허브 바로가기</a></td>
                     </tr>
                 </tbody>
             </table>
