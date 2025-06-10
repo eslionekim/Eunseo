@@ -1,6 +1,1511 @@
-## 오류 수정 및 페이지 꾸미기 최최최종
+# 1주차 연습문제_주제선정, 데이터 수정
 
-# profile.html
+## div로 묶기,사진 적용, 스타일 적용
+<!DOCTYPE html>
+<html lang="ko"> <!--한국어어-->
+<html>
+<head><meta charset="UTF-8"><!--문자 인코딩 유니코드--><title>포트폴리오</title>
+</head>
+    <body style="background-color: #3a352f;"> <!--내용은 body부터라서 여기에 배경style넣는듯-->
+        <div style="display: flex; justify-content: center;">
+            <img src="image/face.png" width="100" height="120">
+        </div>
+        <div style="display: flex; justify-content: center; ">
+            <h1 style= "color: rgb(255, 255, 255);">김은서의 포트폴리오</h1>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <img src="image/main.png" width="1000" height="600">
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center;">
+            <h3 style="font-size: 24px; font-weight: 200; font-style: italic; color: rgb(224, 224, 255);">기술 스택  학력  성장 스토리</h3>
+        </div>
+        
+        <div style="display: flex; justify-content: center;">
+            <h3 style="font-weight: 120; color: aliceblue;">2025.04.17 내 힘으로 포트폴리오 페이지 만들기 시작</h3>
+        </div>
+    </body>
+</html>
+
+# 2주차 연습문제_부트스트랩 추가수정
+
+## 네이베이션 바 메뉴에 하이퍼 링크 추가
+
+## 네비게이션 색상 변경
+head에 style추가
+
+## 테이블에 색상 적용
+
+## index.html에 아래코드 추가
+<head>
+    <meta charset="UTF-8"><!--문자 인코딩 유니코드--><title>포트폴리오</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="20210968"> <!--작성자를 명시하여 누가 작성했는지지-->
+    <meta name="keywords" content="computer"> <!--검색 시 이 문서가 검색될 가능성 높아짐짐-->
+    <base href="http://127.0.0.1:5500"> <!--상대경로 사용 시 기준이 되는 기본 url 경로-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <style>
+        table {
+            font-size: 15pt;
+            color:#3a352f
+        }
+        .custom-navbar {
+            background-color: rgb(191, 191, 191);
+            color:#3a352f
+        }
+    </style>
+
+        <nav class="navbar navbar-expand-lg custom-navbar" >
+            <div class="container-fluid">
+              <a class="navbar-brand" >카테고리</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500">메인페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/eslionekim?tab=repositories">깃허브 주소</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      프로젝트
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/orgs/sku-likelion11th/teams/hackathon-team1">멋쟁이 사자처럼</a></li>
+                      <li><a class="dropdown-item" href="https://github.com/tjdalsquf8/PIU">졸업작품</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="내용을 입력하세요" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">검색</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+        
+            <a href= "index.html" target="_top"><img src="image/main.png" width="1000" height="600"></a> <!--target="_blank" 새탭에서 열기-->
+        </div>
+        <div style="display:flex; justify-content: center;">
+            <table border="1">
+                <caption>기술 스택</caption><!--제목목-->
+                <tbody>
+                    <tr height="50" > <!--한줄, 줄의 배경색은 tr에서서-->
+                        <td bgcolor="grey" width="150" ><font size="5">언어</font></td>
+                        <td bgcolor="beige" width="100">python</td>
+                        <td bgcolor="beige" width="100">java</td>
+                        <td bgcolor="beige" width="100">mysql</td>
+                    </tr>
+                    <tr height="50"> <!--한줄-->
+                        <td bgcolor="grey" width="150"><font size="5">프레임워크</font></td>
+                        <td bgcolor="beige" width="100">django</td>
+                        <td bgcolor="beige" colspan="2" width="100">unity</td>
+                    </tr>
+                    <tr height="50"> <!--한줄-->
+                        <td bgcolor="grey" width="150"><font size="5">깃허브 주소</font></td>
+                        <td bgcolor="beige" colspan="3" width="100"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo">  깃허브 바로가기</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+아래 코드 수정
+<h3 style="font-size: 24px; font-weight: 200; font-style: italic; color: rgb(224, 224, 255);"><a href="index.html">기술 스택</a>   <a href="index.html">학력</a>   <a href="index.html">프로젝트</a></h3>
+
+# 3주차 연습문제_자바스크립트 수정하기
+## 자바스크립트의 클릭 이벤트 식별자 수정하기
+자바스크립트의 getElementById("search_button_msg") 식별자 id값과 index.html의 버튼 id가 같아야함
+
+## 함수 search_message()를 2개 이상 추가
+같은 이름의 함수가 여러개 있을 경우 가장 마지막 함수만 실행
+
+# 4주차 연습문제_자바스크립트 수정하기
+
+## 배열활용
+const badWords=["시발","존나","개새끼","바보","멍청이"];
+
+## 공백 검사,비속어 검사
+function search_message(){
+    let search=document.getElementById("search_input").value.trim();Add commentMore actions
+    if(search.length===0){
+        alert("공백입니다");
+        return false;
+    }
+	for(let word of badWords){
+        if(search.includes(word)){
+            alert("부적절한 검색어가 포함되어 있습니다");
+            return false;
+        }
+    }Add commentMore actions
+    alert("검색을 수행합니다."); // 공백 및 비속어 검사를 통과한 경우
+    return true; // 검색 수행 가능
+}
+
+# 5주차 연습문제_logout.html 파일 작성, 로그아웃 버튼 기능
+
+## logout.html 코드 수정
+로그인 -> 로그아웃 메인화면
+로그인 버튼 제외 모두 제거
+로그인 -> 로그아웃
+버튼을 링크로 바꿔서 ../index.html로 연결
+나머지 배열 조정 
+
+## index.html
+<a href="login/login.html" class="btn btn-outline-success" id="login_btn">로그인 하
+</a>
+
+## js/login.js
+const check_input = () => {
+    const loginForm = document.getElementById('login_form'); //loginform id
+    const loginBtn = document.getElementById('login_btn'); //로그인버튼 id
+    const emailInput = document.getElementById('typeEmailX'); //이메일버튼 for
+    const passwordInput = document.getElementById('typePasswordX'); //패스워드버튼 for
+    const c = '아이디, 패스워드를 체크합니다';
+    alert(c);
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
+    if (emailValue === '') {
+    alert('이메일을 입력하세요.');
+    return false;
+    }
+    if (passwordValue === '') {
+    alert('비밀번호를 입력하세요.');
+    return false;
+    }
+    console.log('이메일:', emailValue);Add commentMore actions
+    console.log('비밀번호:', passwordValue);
+    loginForm.submit();
+};
+document.getElementById("login_btn").addEventListener('click', check_input);
+
+## login.js
+const check_input = () => {
+    const loginForm = document.getElementById('login_form'); //loginform id
+    const loginBtn = document.getElementById('login_btn'); //로그인버튼 id
+    const emailInput = document.getElementById('typeEmailX'); //이메일버튼 for
+    const passwordInput = document.getElementById('typePasswordX'); //패스워드버튼 forAdd commentMore actions
+    const c = '아이디, 패스워드를 체크합니다';
+    alert(c);
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
+    if (emailValue === '') {
+    alert('이메일을 입력하세요.');Add commentMore actions
+    return false;
+    }
+    if (passwordValue === '') {
+    alert('비밀번호를 입력하세요.');
+    return false;
+    }
+    console.log('이메일:', emailValue);
+    console.log('비밀번호:', passwordValue);
+    loginForm.submit();
+};
+document.getElementById("login_btn").addEventListener('click', check_input);
+
+## pop_up.js 수정
+function show_clock(){
+    let currentDate= new Date(); // 현재 시스템 날짜 객체 생성
+    let divClock= document.getElementById('divClock'); //id로 입력받아옴옴
+    let msg = "현재시간: ";
+    if(currentDate.getHours()>12){  // 12시보다 크니까 오후
+   msg += "오후";
+    msg += currentDate.getHours()-12+"시"; //12시보다 커서 -12
+    }
+    else { //오전전
+    msg += "오전";
+    msg += currentDate.getHours()+"시";
+    }
+    msg += currentDate.getMinutes()+"분";
+    msg += currentDate.getSeconds()+"초";
+    divClock.innerText= msg; //divClock가 id인 텍스트를 msg로 변경
+    if (currentDate.getMinutes()>58) {    //정각1분전빨강색출력
+    divClock.style.color="red";
+    }
+    setTimeout(show_clock, 1000);  //1초마다갱신
+   }
+
+//머무를 때 이미지
+const over=(obj)=>{
+    obj.src="image/face.png";
+}
+
+//나갔을 때 이미지
+const out=(obj)=>{
+    obj.src="image/face_2.png";
+}
+
+var close_time;
+var close_time2=10;
+clearTimeout(close_time); //이전에 설정된 타임아웃이 있으면 취소소
+close_time=setTimeout("close_window()",10000); //10초 후 close_window함수수
+show_time(); //카운드 다운 시작작
+function show_time(){
+    let divClock = document.getElementById('Time'); 
+    divClock.innerText = close_time2; // 10초 삽입 시작Add commentMore actions
+    close_time2--; // 1초씩 감소
+    setTimeout(show_time, 1000);  //1초마다 갱신
+}function close_window() { // 함수 정의
+    window.close(); // 윈도우 닫기
+}
+
+## popup.html 아래 코드 추가
+<h1 class="display-4"><div id="time" class="clock"></div></h1>
+
+## index_login.html 생성 
+index.html 복붙하여 수정
+
+## login.html 생성 
+index.html 복붙, 로그인 폼 복붙하여 수정
+
+## logout.html 생성
+login.html 복붙 후 수정
+
+# 오류 수정
+
+## popup.hmtl이 10초후에 사라질 때 index.html도 같이 사라짐
+원인: pop_up.js에 사라지는 코드가 같이 있었음
+해결: popup_close.js를 따로 파서 코드 분리
+
+## popup.html 하단에 10초 세는게 안뜸. div로 따로 넣었는데도 안뜸뜸
+원인: 알고보니 js에선 id가 Time인 걸 찾는데 hmtl엔 time이라고 적어서 그런거였음
+해결: id 동일하게 고치치. 대소문자 주의!!
+
+# 오류 수정
+
+## 로그인 폼, 입력문자 길이,특수문자 제한
+login.js-> check_input 함수
+if (emailValue.length < 5) {
+    alert('아이디는최소5글자이상입력해야합니다.');
+    return false;
+ }
+if (passwordValue.length < 12) {
+    alert('비밀번호는반드시12글자이상입력해야합니다.');
+    return false;
+}
+
+const hasSpecialChar = passwordValue.match(/[!,@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/)!==null;
+const hasUpperCase = passwordValue.match(/[A-Z]+/) !== null;
+const hasLowerCase = passwordValue.match(/[a-z]+/) !== null;
+변수 추가
+if (!hasSpecialChar) { //hasSpecialChar가 false일 때,즉 특수문자 없을때때Add commentMore actions
+    alert('패스워드는 특수문자를 1개이상 포함해야합니다.');
+    return false;
+}if (!hasUpperCase || !hasLowerCase) {//hasUpperCase가 false이거나 hasLowerCase가 false일 경우, 즉 대소문자 둘중 하나만 잇을떼
+    alert('패스워드는 대소문자를 1개이상 포함해야합니다.');
+    return false;
+}#xss방지 팝업창
+login.html-><head>태그-> DOMPurify 라이브러리 활용&복붙 (악성스크립트 제거하는 오픈소스 라이브러리)
+login.js-> check_input 함수 앞에 아래 함수 추가
+const check_xss = (input) => { (check_xss(객체) 로 쓰일거임,공격가능성잇음 false로 나와)
+const DOMPurify = window.DOMPurify; (DOMPurify가 cdn방식으로 로드되었다고 가정, 이 라이브러리가 포함되어야 정상작동)
+const sanitizedInput = DOMPurify.sanitize(input); (입력값에서 악성코드 제거)
+if (sanitizedInput !== input) { (제거된 악성 코드와 입력값 비교햇을 때 다르다? 그럼 악성코드가 잇엇단증거)
+    alert('XSS 공격 가능성이 있는 입력값을 발견했습니다.');
+    return false;
+}// Sanitized된 값 반환
+return sanitizedInput; (없거나 제거된 상태면 정화된 값 반환)
+};
+#xss 로그인 금지
+check_input 함수 내부에 아래 코드 추가
+const sanitizedPassword = check_xss(passwordInput);
+ // check_xss 함수로 비밀번호 Sanitize
+const sanitizedEmail = check_xss(emailInput);
+ // check_xss 함수로 이메일 Sanitize
+if (!sanitizedEmail) { (공격가능성잇음 false일테니, !해서 true나오면 return false)
+ // Sanitize된 비밀번호 사용
+    return false;
+}if (!sanitizedPassword) {
+ // Sanitize된 비밀번호 사용
+    return false;
+}
+# 7주차 연습문제_로그인 입력길이 제한, 입력 제한
+
+## 이메일 10글자 이하, 패스워드 15글자 이하 수정
+//아이디 길이 제한
+if (emailValue.length <10 ) {
+    alert('아이디는 최소 10글자 이상 입력해야 합니다. ');
+    //패스워드 길이 제한
+if (passwordValue.length < 15) {
+    alert('비밀번호는 반드시 15글자 이상 입력해야 합니다.');
+    return false;
+}
+
+## 입력 제한
+//3글자 이상 문자 반복
+const repeatedPattern = /(\w{3,}).*?\1/;
+//2글자 이상 숫자 반복 
+const sequentialNumbers = /(\d{2,})(?=.*\1)/;
+//3글자 이상 반복 입력 x
+if (repeatedPattern.test(emailValue) || repeatedPattern.test(passwordValue)) {
+    alert('아이디와 패스워드에 3글자 이상의 동일한 단어를 반복해서 사용할 수 없습니다.');
+    return false;
+}
+// 연속되는 숫자 2개이상 반복 입력x
+if (sequentialNumbers.test(emailValue) || sequentialNumbers.test(passwordValue)) {
+    alert('아이디와 패스워드에 연속된 숫자 2개 이상을 사용할 수 없습니다.');
+    return false;
+}
+
+#  7주차 연습문제_데이터 저장(쿠키)
+
+## pop_up.js-> 변수 시간 수정
+var close_time2 = 50; 
+close_time= setTimeout("close_window()", 50000);
+
+## pop_up.html -> 가장 하단에 아래 코드 추가
+<input class="form-check-input" type="checkbox" id="check_popup" onclick="closePopup();"> //체크박스
+<label class="form-check-label" for="flexCheckChecked">하루에 한번만 열기</label> //그 옆 글씨
+
+## pop_up.js -> pop_up함수 수정
+function pop_up(){ //index.html body태그에서 onload함, 메인페이지 치면 뜨는거거
+    var cookieCheck = getCookie("popupYN"); //getCookie(): 쿠키 값 읽기
+        if (cookieCheck != "N"){ //쿠키 값이 N이 아닐경우
+        window.open("../popup/popup.html", "팝업테스트", "width=400, height=300, top=10, left=10");
+    }
+
+## pop_up.js-> 3개 함수 추가
+function setCookie(name,value,expiredays){
+    var date=new Date(); //date: 현재 날짜 가져옴
+    date.setDate(date.getDate()+expiredays); 
+    //만료일=현재날짜(getDate로 받아옴)+지정날짜(expiredays)
+    document.cookie=escape(name)+"="+escape(value)+";expires="+date.toUTCString()+";path=/" + ";SameSite=None; Secure";
+    //쿠키설정=쿠키이름 URI인코딩 = 쿠키 값 URI인코딩 ;expires= 쿠키만료일+ 경로지정인데 /는 모든 경로에서 사용Add commentMore actions
+}
+
+function getCookie(name){ //name: 검색할 쿠키이름
+    var cookie=document.cookie; //cookie: 모든 쿠키 문자열로 반환환
+    console.log("쿠키를 요청합니다.");
+    if (cookie!=""){ //쿠키가 뭐라도 있으면
+        var cookie_array=cookie.split("; "); //1=1 ; 2=2; -> [1=1,2=2]
+        //cookie에 저장된 쿠키들을 ; 기준으로 분리해서 배열로 변환
+        for (var index in cookie_array){ //쿠키 배열의 모든 것들을 순회
+            var cookie_name=cookie_array[index].split("="); //=를 기준으로 나누기, [1=1]->[1,1]
+            if (cookie_name[0]=="popupYN"){ //쿠키 이름이 popupYN
+                return cookie_name[1]; //해당 쿠키 값 반환 [0]이 이름, [1]이 값
+            }Add commentMore actions
+        }
+    }
+    return; //쿠키 없으면 결과 없음음
+}
+
+function closePopup(){
+    if(document.getElementById('check_popup').value){//id가 check_popup인 요소.체크박스 선택된 경우
+        setCookie("popupYN","N",1); //쿠키설정(이름,값,만료일1)
+        console.log("쿠키를 설정합니다.");
+        self.close();
+    }
+}
+
+#  8주차 수업내용_아이디 데이터 저장(쿠키)
+
+## login.html-> 패스워드 찾기와 로그인 사이에 아래 코드 추가
+<div class="checkbox mb-3">
+    <label>
+    <input type="checkbox" value="remember-me" id="idSaveCheck"> 아이디 기억
+    </label>
+</div>
+
+## login.js-> check_input함수 수정
+맨 위
+const idsave_check = document.getElementById('idSaveCheck'); //체크박스 id가져오기
+
+submit위
+//id 저장 쿠키
+    if(idsave_check.checked==true){ //체크박스에 체크했다면
+        alert("쿠키를 저장합니다.",emailValue);
+        setCookie("id",emailValue,1); //id,이메일입력값,1일 마지노선 저장
+        alert("쿠키 값:"+emailValue);
+    }
+    else{ //체크안했다면
+        setCookie("id",emailValue.value,0); //id,이메일입력값,0일 쿠키삭제
+    }
+## login.js-> 아래 함수 추가
+popup.js->setCookie,getCookie 함수 복붙
+getCookie popupYN->id 변경
+
+function init(){
+    const emailInput=document.getElementById('typeEmailX'); //이메일 값 가져오기
+    const idsave_check=document.getElementById('idSaveCheck'); //아이디 기억 체크 가져오기
+    let get_id=getCookie("id"); //id가 이름인 쿠키 값 가져오기
+    if(get_id){ //id가 이름인 쿠키 값이 존재한다면
+        emailInput.value=get_id; //이메일 입력필드에 쿠키 값 넣어
+        idsave_check.checked=true; //체크박스에 체크해
+        console.log("아이디를 기억합니다.")
+    }
+## login.html->  <body>태그
+<body class="text-center" onload="init();"> 수정
+
+# 8주차 연습문제_로그인,로그아웃 데이터 저장(쿠키)
+
+## logout.html-> login.js 스크립트 연동
+
+## login.js-> getCookie
+cookie_name[0]==id -> name으로 수정 (이래야 어떤 쿠키든 얻을 수 있음)
+// 로그인 횟수 카운트
+function login_count() {
+    let login_cnt = parseInt(getCookie("login_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0Add commentMore actions
+    login_cnt++; // 값 증가
+    setCookie("login_cnt", login_cnt, 7); // 쿠키에 저장 (7일 유효)
+    console.log("로그인 횟수:", login_cnt); // 로그 출력
+}
+// 로그아웃 횟수 카운트
+function logout_count() {
+    console.log("logout_count 호출됨"); // 함수 호출 확인
+    let logout_cnt = parseInt(getCookie("logout_cnt")) || 0; // 기존 쿠키 값 가져오기, 없으면 0
+    logout_cnt++; // 값 증가
+    setCookie("logout_cnt", logout_cnt, 7); // 쿠키에 저장 (7일 유효)
+    console.log("로그아웃 횟수:", logout_cnt); // 로그 출력
+}
+
+## login.js-> document.getElementById("login_btn").addEventListener('click', check_input); 아래코드로 수정Add commentMore actions
+(원래는 document로 시작했는데 어떤 페이지에서는 해당 id를 찾아내려고 하니까 오류나서 if문 쓴거야)
+const loginBtn = document.getElementById("login_btn");
+if (loginBtn) {
+    loginBtn.addEventListener('click', function () {
+        check_input();
+        login_count();
+    });
+}
+const logoutBtn = document.getElementById("logout_btn");
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', logout_count);
+}
+
+
+#  8주차 응용문제_로그인 유지
+
+## session.js추가-> login.html에 스크립트 연결
+
+## session.js-> 아래 코드 추가
+function session_set(){ //로그인 할 경우 데이터 저장
+    let session_id=document.querySelector("#typeEmailX");//getElementByid는 id만 가져오지만 이건 css기반 id,클래스,태그 등 다양한 요소 가능Add commentMore actions
+    if(sessionStorage){ //세션동안 데이터 저장,유지, 브라우저가 이 객체를 지원하는지 확인
+        sessionStorage.setItem("Session_Storage_test",session_id.value); //sessionStorage.setItem(key,value):키,값을 사용해 데이터 저장
+    }  else{
+        alert("로컬 스토리지 지원x");
+    }
+}
+
+function session_get(){ //데이터 읽기
+    if(sessionStorage){
+        return
+    } else {
+    alert("세션 스토리지 지원 x");
+    }
+}
+
+function session_check() { //검사해서 만약 데이터가 있으면 이미 로그인되었다하고 로그인된 페이지로 이동
+    if (sessionStorage.getItem("Session_Storage_test")) { //sessionStorage.getItem(key):키에 해당하는 값 가져옴
+        alert("이미 로그인 되었습니다.");
+        location.href='../login/index_login.html'; // 로그인된 페이지로 이동Add commentMore actions
+    }
+}
+
+## login.js -> check_input함수에 아래 글씨 추가
+로그인 하면 폼제출되는데 이때 세션도 저장하려고
+    session_set();
+    loginForm.submit();
+## login.js-> init함수에 아래 글씨 추가Add commentMore actions
+이메일 기억하는 체크박스로, 메인화면 불러올 때 자동으로 onload되는데 이 때 세션검사해서 이미 로그인한거면 로그인했다고 떠야해서
+    session_check();Add comment
+
+#  8주차 응용문제_세션 스토리지 로그아웃
+
+## login.js-> 아래코드 삽입
+//세션 삭제
+function session_del(){
+    if(sessionStorage){
+        sessionStorage.removeItem("Session_Storage_test");
+        alert("로그아웃 버튼 클릭 확인: 세션 스토리지를 삭제합니다.");
+    } else{
+        alert("세션 스토리지 지원x");
+    }
+}
+
+## login.js-> if(logoutBtn)-> session_del()추가
+if (logoutBtn) {
+    session_del();
+    logoutBtn.addEventListener('click', logout_count);
+}
+
+#  8주차 응용문제_세션 스토리지 로그아웃
+
+## ogin.js-> 아래코드 삽입
+//세션 삭제
+function session_del(){
+        sessionStorage.removeItem("Session_Storage_test");
+        alert("로그아웃 버튼 클릭 확인: 세션 스토리지를 삭제합니다.");
+    } else{
+        alert("세션 스토리지 지원x");
+    }
+}
+
+## login.js-> if(logoutBtn)-> session_del()추가
+if (logoutBtn) {
+    session_del();
+    logoutBtn.addEventListener('click', logout_count);
+}
+
+#  9주차 수업내용_세션(암호화,복호화)
+
+## login.html , index_login.html -> login.js/session.js/crypto.js 연동 및 crypto-js라이브러리 복붙Add commentMore actions
+
+## crypto.js 추가 -> 아래 코드 삽입
+function encodeByAES256(key, data){ 
+    const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
+        //CryptoJS:암호화복호화 수행 라이브러리, AES.encrypt:AES암호화 수행
+        iv: CryptoJS.enc.Utf8.parse(""), 
+        // IV:초기화 벡터,CryptoJS.enc.Utf8.parse(""): 초기화 벡터로 빈 문자열을 UTF-8 형식으로 변환
+        padding: CryptoJS.pad.Pkcs7, 
+        // 패딩: 데이터 채우기, CryptoJS.pad.Pkcs7: PKCS#7 방식으로 패딩
+        mode: CryptoJS.mode.CBC 
+        // 운영 모드
+    });
+    return cipher.toString();
+}function decodeByAES256(key, data){
+    const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
+    //CryptoJS: 암호화복호화를 수행하는 라이브러리 객체,AES.decrypt: AES 복호화를 수행하는 메서드
+    iv: CryptoJS.enc.Utf8.parse(""),
+    padding: CryptoJS.pad.Pkcs7,
+    mode: CryptoJS.mode.CBC
+    });
+    return cipher.toString(CryptoJS.enc.Utf8);
+    //cipher.toString(CryptoJS.enc.Utf8): 복호화된 데이터를 UTF-8 형식의 문자열로 변환
+}function encrypt_text(password){
+    const k = "key"; // 클라이언트 키
+    const rk = k.padEnd(32, " ");
+    //k.padEnd(32, " "): k 문자열을 32바이트로 채우기 위해 공백으로 패딩
+    const b = password;
+    const eb = this.encodeByAES256(rk, b); 
+    //this.encodeByAES256(rk, b): encodeByAES256 함수를 호출하여 데이터를 암호화
+    return eb;
+    console.log(eb);
+}function decrypt_text(){
+    const k = "key"; 
+    const rk = k.padEnd(32, " ");
+    const eb = session_get();
+    const b = this.decodeByAES256(rk, eb); 
+    // this.decodeByAES256(rk, eb): decodeByAES256 함수를 호출하여 데이터를 복호화
+    console.log(b); 
+}
+
+## session.js -> session.set()함수 추가 및 수정
+function session_set(){
+    let session_id=document.querySelector("#typeEmailX");//getElementByid는 id만 가져오지만 이건 css기반 id,클래스,태그 등 다양한 요소 가능
+    let session_pass = document.querySelector("#typePasswordX"); // DOM 트리에서 pass 검색
+    if(sessionStorage){ //세션동안 데이터 저장,유지, 브라우저가 이 객체를 지원하는지 확인
+        let en_text = encrypt_text(session_pass.value)
+        sessionStorage.setItem("Session_Storage_id",session_id.value);
+        sessionStorage.setItem("Session_Storage_pass", en_text);
+    }  else{
+        alert("로컬 스토리지 지원x");
+    }
+}
+
+## login.js -> 아래 함수 추가
+function init_logined(){
+    if(sessionStorage){
+        decrypt_text(); // 복호화 함수
+}    else{
+        alert("세션 스토리지 지원 x");
+    }
+}
+
+## index_login.html -> body 수정 
+<body style="background-color: black;" onload="init_logined();">
+
+## session.js -> session_get,session_check 수정
+function session_get(){
+    if(sessionStorage){
+        return sessionStorage.getItem("Session_Storage_pass");
+    } else {
+    alert("세션 스토리지 지원 x");
+    }
+}function session_check() { //세션 검사
+    if (sessionStorage.getItem("Session_Storage_id")) {
+        alert("이미 로그인 되었습니다.");
+        location.href='../login/index_login.html'; // 로그인된 페이지로 이동
+    }
+}
+
+#  9주차 수업내용_안전한 인증 JWT
+
+## login.js -> check_input() 함수-> emailValue 변수 선언 아래에 선언
+const payload = {
+        id: emailValue, //이메일 주소를 id필드로 저장장
+        exp: Math.floor(Date.now() / 1000) + 3600 
+        //JWT(로그인 후 지속인증)의 만료시간: 현재 시간/1000=초단위 + 1시간 
+    };
+const jwtToken = generateJWT(payload); //generateJWT(payload):토큰 생성
+
+## login.js -> check_input() 함수-> submit()위에 아래 코드 넣기
+localStorage.setItem('jwt_token', jwtToken); //setItem(key) : 해당 key값에 대한 데이터를 저장
+
+## jwt_token.js 추가 -> login.html/index_login.html에 연동 후 아래 코드 삽입
+// JWT 비밀 키 (실제 운영 환경에서는 복잡한 키 사용 필수)
+const JWT_SECRET = "your_secret_key_here";
+ Add commentMore actions
+function generateJWT(payload) {
+    // 1. 헤더 생성 및 Base64 인코딩
+    const header = { alg: "HS256", typ: "JWT" };
+    const encodedHeader = btoa(JSON.stringify(header));
+    // 2. 페이로드 Base64 인코딩
+    const encodedPayload = btoa(JSON.stringify(payload)); // JSON 형태로 변환 후 인코딩
+    // 3. 서명 생성 (HMAC-SHA256 알고리즘 사용)
+    const signature = CryptoJS.HmacSHA256(`${encodedHeader}.${encodedPayload}`, JWT_SECRET);
+    const encodedSignature = CryptoJS.enc.Base64.stringify(signature);
+    // 4. 최종 토큰 조합
+    return `${encodedHeader}.${encodedPayload}.${encodedSignature}`;
+}
+
+function verifyJWT(token) { // 토큰검증
+    try {
+        // 1. 토큰을헤더, 페이로드, 서명으로분할
+        const parts = token.split('.');
+        if (parts.length!== 3) return null; // 형식오류체크
+        const [encodedHeader, encodedPayload, encodedSignature] = parts;
+        // 2. 서명재계산및비교
+        const signature = CryptoJS.HmacSHA256(`${encodedHeader}.${encodedPayload}`, JWT_SECRET);Add commentMore actions
+        const calculatedSignature= CryptoJS.enc.Base64.stringify(signature);
+        if (calculatedSignature!== encodedSignature) return null; // 서명불일치
+        // 3. 페이로드파싱및만료시간검증
+        const payload = JSON.parse(atob(encodedPayload)); // 디코딩후해석
+        if (payload.exp< Math.floor(Date.now() / 1000)) { // 밀리초단위
+            console.log('보안토큰이만료되었습니다');
+            return null;
+        }
+        return payload; // 검증성공
+    } catch (error) {
+        return null; // 파싱오류또는기타예외처리
+    }
+}
+
+function isAuthenticated() { // 사용자 인증 상태 확인
+    const token = localStorage.getItem('jwt_token');
+    if (!token) return false; // 토큰 없음
+    const payload = verifyJWT(token);
+    console.log(payload);
+    return !!payload; // 페이로드 유무로 인증 상태 판단
+}
+
+function checkAuth() { // 인증 검사 수행
+    const authenticated = isAuthenticated(); // 한 번만 검증 호출
+    if (authenticated) {
+        alert('정상적으로 토큰이 검증되었습니다.');
+    } else {
+        alert('토큰 검증 에러!! 인증되지 않은 접근입니다.');
+        window.location.href = '../login/login.html'; // 로그인 페이지 이동
+    }
+}
+
+## index_login.html-> body태그
+onload="checkAuth(); init_logined(); pop_up();“
+
+#  8주차 연습문제_로그인 3회 이상 실패 시 4분간 막기
+
+## login.js-> check_input()함수 -> 로그인 실패 시킬 조건에 login_failed();넣기 
+if (emailValue.length <10 ) {
+    alert('아이디는 최소 10글자 이상 입력해야 합니다. ');
+    login_failed(); // 실패 처리
+    return false;
+ }
+ //패스워드 길이 제한
+if (passwordValue.length < 15) {Add commentMore actions
+    alert('비밀번호는 반드시 15글자 이상 입력해야 합니다.');
+    login_failed(); // 실패 처리
+    return false;
+ }
+//패스워드 특수문자 포함
+if (!hasSpecialChar) { //hasSpecialChar가 false일 때,즉 특수문자 없을때때
+    alert('패스워드는 특수문자를 1개이상 포함해야합니다.');
+    login_failed(); // 실패 처리
+    return false;
+}//패스워드 대소문자 포함
+if (!hasUpperCase || !hasLowerCase) {//hasUpperCase가 false이거나 hasLowerCase가 false일 경우, 즉 대소문자 둘중 하나만 잇을떼떼
+    alert('패스워드는 대소문자를 1개이상 포함해야합니다.');
+    login_failed(); // 실패 처리
+    return false;
+}
+
+## login.js-> init() ->아래 코드 추가
+const loginBtn = document.getElementById('login_btn'); // 로그인 버튼 가져오기
+const errorContainer = document.getElementById("login_error_message");
+// 오류 메시지 표시할 컨테이너 가져오기
+let lockout_time = parseInt(getCookie("login_lockout_time")) || 0; 
+//쿠키에서 잠금 시간 가져오고, 없으면 기본값 0으로 설정
+const lockoutDuration = 4 * 60 * 1000; // 잠금 시간을 4분으로 설정
+const currentTime = Date.now(); // 현재 시간
+session_check()위에 아래 코드 추가
+// 잠금 상태 확인
+if (lockout_time && currentTime < lockout_time + lockoutDuration) { //잠금시간 설정, 만료시간보다 이전인지 확인, 
+        const remainingTime = lockout_time + lockoutDuration – currentTime; //남은 시간 계산
+        displayLockoutMessage(remainingTime); // 남은 잠금 시간 표시
+        loginBtn.disabled = true; // 로그인 버튼 비활성화
+    } else { //4분 지나면
+        errorContainer.style.display = "none"; // 오류 메시지 숨기기
+        loginBtn.disabled = false; // 로그인 버튼 활성화
+}
+
+## login.js -> 아래 코드 추가
+function login_failed() {
+    const maxFail = 3; // 최대 실패 횟수
+    const lockoutDuration = 4 * 60 * 1000; // 4분 (밀리초 단위)
+    let fail_count = parseInt(getCookie("login_fail_cnt")) || 0; // 실패 횟수 가져오기, 없으면 0
+    const currentTime = Date.now(); // 현재 시간
+    fail_count++; //실패 횟수 증가
+    setCookie("login_fail_cnt", fail_count, 7); // 쿠키저장(쿠키명, 실패 횟수, 7일 기간)
+    if (fail_count >= maxFail) { //실패 횟수가 3이상
+        setCookie("login_lockout_time", currentTime, 7); // 쿠키저장(쿠키명, 현재시간, 7일 기간)
+        disableLoginButton(lockoutDuration); // 로그인 버튼 비활성화
+        // 즉시 메시지 표시
+        displayLockoutMessage(lockoutDuration); //잠금 메시지 표시(4분간)
+        return; //더 이상 코드 실행x 종료
+    }
+    // 실패 메시지 출력
+    displayErrorMessage(`로그인 실패 (${fail_count}/${maxFail})`); // 로그인 실패 ex) 1/3 
+}
+
+function disableLoginButton(duration) { //로그인 비활(4분간)
+    const loginBtn = document.getElementById("login_btn"); //로그인 버튼 가져오기
+    if (!loginBtn) return; //로그인 버튼 false면 그냥 지나가기
+    loginBtn.disabled = true;  //로그인 비활=true
+    setTimeout(() => {
+        loginBtn.disabled = false; //로그인 비활=false
+    }, duration); //시간 지나면 true
+}
+
+function displayErrorMessage(message) { //오류 메시지 ui에 표시
+    const errorContainer = document.getElementById("login_error_message"); //오류메시지 가져오기
+    if (errorContainer) { //오류메시지 true면
+        errorContainer.textContent = message; //오류메시지 설정
+        errorContainer.style.display = message ? "block" : "none"; //메시지 있으면 표출하고, 없으면 숨기기
+    }
+}
+
+
+function displayLockoutMessage(duration) { //잠금 메시지 표시 (4분간)
+    const errorContainer = document.getElementById("login_error_message"); //오류메시지 가져오기Add commentMore actions
+    const loginBtn = document.getElementById("login_btn"); //로그인 버튼 가져오기
+    if (!errorContainer || !loginBtn) return; //잠금끝나면 (오류메시지나 로그인 버튼이 없으면) 함수 종료
+    loginBtn.disabled = true; // 로그인 버튼 비활성화
+    let remainingTime = duration; // 남은 잠금 시간을 4분으로 초기화
+    // 남은 시간 업데이트 함수
+    const updateMessage = () => { //매초 남은 시간 업데이트
+        const minutes = Math.floor(remainingTime / 1000 / 60); //남은 시간을 밀리초->분으로 변환
+        const seconds = Math.ceil((remainingTime / 1000) % 60); //남은 시간에서 초 계산
+        errorContainer.textContent = `로그인 가능 횟수를 초과하였습니다. ${minutes}분 ${seconds}초 동안 로그인이 제한됩니다.`; //잠금 메시지 숫자 설정
+        errorContainer.style.display = "block"; //오류메시지를 화면에 표시
+        if (remainingTime <= 0) { 남은 시간이 없으면
+            clearInterval(timer); // 타이머 정지
+            errorContainer.style.display = "none"; // 메시지 숨기기
+            loginBtn.disabled = false; // 버튼 활성화
+        } else {
+            remainingTime -= 1000; // 남은 시간1초씩 감소
+        }
+    };
+    updateMessage(); //메시지 설정, 화면에 표시
+    const timer = setInterval(updateMessage, 1000); //1초 간격으로 반복 실행
+}
+
+## login.js-> if(loginBtn) 수정
+// 로그인 버튼 이벤트 리스너에 실패 처리 연결
+if (loginBtn) {
+    loginBtn.addEventListener('click', function () { //로그인 버튼에 클릭 이벤트 추가
+        if (!check_input()) { //호출
+            return; // 조건 미충족 시 로그인 실패로 종료	
+        }
+        // 로그인 성공
+        alert('로그인 성공!');
+        login_count(); // 성공 시 로그인 횟수 카운트
+    });
+}
+
+
+# 8주차 연습문제_로그인 3회이상 실패시 4분간 막기(버그 고치기)
+
+## login_cnt 쿠키 저장 안됨
+if (loginBtn) {
+    loginBtn.addEventListener('click', function () {
+        check_input();
+        login_count();
+    });
+}코드 수정했던거 기존꺼로 복원했더니 됨
+
+#  9주차 연습문제_로그 아웃 처리
+
+## login.js-> if (logoutBtn) 수정
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+        // 쿠키와 세션 삭제
+        session_del();
+        logout_count();
+        // JWT 토큰 삭제
+        localStorage.removeItem('jwt_token'); //웹 브라우저 localStorage에서 jwt_token삭제
+        alert("로그아웃 완료: JWT 토큰이 삭제되었습니다.");
+    });
+}
+
+#  11주차 수업내용_프로필,apiAdd commentMore actions
+
+# 프로필
+
+## index_login.html -> 프로필 버튼으로 아래 코드 추가
+ <li class="nav-item">
+ <a class="nav-link" href="login/profile.html" target='_blank'>기본정보(프로필)</a>
+ </li> 
+
+## profile.html 생성
+index.html복붙, 네비게이션 바 아래로 지우고 원하는 템플릿 넣은 후 수정
+
+## api
+카카오 api 사이트 로그인 -> 내 애플리케이션 -> 추가 -> 정보입력 후 저장
+좌측 메뉴 -> 플랫폼 -> h쎄://127.0.0.1:5500
+메뉴 -> 카카오맵 -> On
+메뉴-> 앱키 -> 자바스크립트 키 복사
+https://apis.map.kakao.com/ 접속 후 자바스크립트로 시작
+
+## profile.html -> 아래 코드 삽입 후 키 붙여넣기
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 KEY 입력"></script>
+map.js, profile.css 생성 후 연동
+
+## map.js 생성 후 아래 코드 작성(6페이지 가량)
+var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+var options = { //지도를 생성할 때 필요한 기본 옵션
+center: new kakao.maps.LatLng(37.379425, 126.928228), //지도의중심좌표.
+level: 3 //지도의 레벨(확대, 축소 정도)
+};
+var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+ // 지도 타입 컨트롤을 지도에 표시합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+ // 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+ map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+ // 지도에 지형정보를 표시하도록 지도타입을 추가합니다
+map.addOverlayMapTypeId(kakao.maps.MapTypeId.TERRAIN);
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(37.379486, 126.928233); 
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+// 지도에 마커를 표시합니다
+marker.setMap(map);
+// 지도에 클릭 이벤트를 등록합니다
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+// 클릭한 위도, 경도 정보를 가져옵니다 
+var latlng = mouseEvent.latLng;
+// 마커 위치를 클릭한 위치로 옮깁니다
+marker.setPosition(latlng);
+var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+message += '경도는 ' + latlng.getLng() + ' 입니다';
+var resultDiv = document.getElementById('clickLatlng');
+resultDiv.innerHTML = message;
+});
+// 마커를 담을 배열입니다
+var markers = [];
+ // 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places();
+ // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+ // 키워드로 장소를 검색합니다
+searchPlaces();
+// 장소 검색 객체를 생성합니다
+var ps = new kakao.maps.services.Places();  
+// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
+// 키워드로 장소를 검색합니다
+searchPlaces();
+// 키워드 검색을 요청하는 함수입니다
+function searchPlaces() {
+    var keyword = document.getElementById('keyword').value;
+    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+        alert('키워드를 입력해주세요!');
+        return false;
+    }
+    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+    ps.keywordSearch( keyword, placesSearchCB); 
+}
+// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearchCB(data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+        // 정상적으로 검색이 완료됐으면
+        // 검색 목록과 마커를 표출합니다
+        displayPlaces(data);
+        // 페이지 번호를 표출합니다
+        displayPagination(pagination);
+    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+        alert('검색 결과가 존재하지 않습니다.');
+        return;
+    } else if (status === kakao.maps.services.Status.ERROR) {
+        alert('검색 결과 중 오류가 발생했습니다.');
+        return;
+    }
+}
+// 검색 결과 목록과 마커를 표출하는 함수입니다
+function displayPlaces(places) {
+    var listEl = document.getElementById('placesList'), 
+    menuEl = document.getElementById('menu_wrap'),
+    fragment = document.createDocumentFragment(), 
+    bounds = new kakao.maps.LatLngBounds(), 
+    listStr = '';
+    
+    // 검색 결과 목록에 추가된 항목들을 제거합니다
+    removeAllChildNods(listEl);
+    // 지도에 표시되고 있는 마커를 제거합니다
+    removeMarker();
+    
+    for ( var i=0; i<places.length; i++ ) {
+        // 마커를 생성하고 지도에 표시합니다
+        var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+            marker = addMarker(placePosition, i), 
+            itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        bounds.extend(placePosition);
+        // 마커와 검색결과 항목에 mouseover 했을때
+        // 해당 장소에 인포윈도우에 장소명을 표시합니다
+        // mouseout 했을 때는 인포윈도우를 닫습니다
+        (function(marker, title) {
+            kakao.maps.event.addListener(marker, 'mouseover', function() {
+                displayInfowindow(marker, title);
+            });
+            kakao.maps.event.addListener(marker, 'mouseout', function() {
+                infowindow.close();
+            });
+            itemEl.onmouseover =  function () {
+                displayInfowindow(marker, title);
+            };
+            itemEl.onmouseout =  function () {
+                infowindow.close();
+            };
+        })(marker, places[i].place_name);
+        fragment.appendChild(itemEl);
+    }
+    // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
+    listEl.appendChild(fragment);
+    menuEl.scrollTop = 0;
+    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+    map.setBounds(bounds);
+}
+// 검색결과 항목을 Element로 반환하는 함수입니다
+function getListItem(index, places) {
+    var el = document.createElement('li'),
+    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
+                '<div class="info">' +
+                '   <h5>' + places.place_name + '</h5>';
+    if (places.road_address_name) {
+        itemStr += '    <span>' + places.road_address_name + '</span>' +
+                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+    } else {
+        itemStr += '    <span>' +  places.address_name  + '</span>'; 
+    }
+                 
+      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
+                '</div>';           
+    el.innerHTML = itemStr;
+    el.className = 'item';
+    return el;
+}
+// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
+function addMarker(position, idx, title) {
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+        imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
+        imgOptions =  {
+            spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+            spriteOrigin : new kakao.maps.Point(0, (idx*46)+10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+            offset: new kakao.maps.Point(13, 37) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+        },
+        markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+            marker = new kakao.maps.Marker({
+            position: position, // 마커의 위치
+            image: markerImage 
+        });
+    marker.setMap(map); // 지도 위에 마커를 표출합니다
+    markers.push(marker);  // 배열에 생성된 마커를 추가합니다
+    return marker;
+}
+// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+function removeMarker() {
+    for ( var i = 0; i < markers.length; i++ ) {
+        markers[i].setMap(null);
+    }   
+    markers = [];
+}
+// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
+function displayPagination(pagination) {
+    var paginationEl = document.getElementById('pagination'),
+        fragment = document.createDocumentFragment(),
+        i; 
+    // 기존에 추가된 페이지번호를 삭제합니다
+    while (paginationEl.hasChildNodes()) {
+        paginationEl.removeChild (paginationEl.lastChild);
+    }
+    for (i=1; i<=pagination.last; i++) {
+        var el = document.createElement('a');
+        el.href = "#";
+        el.innerHTML = i;
+        if (i===pagination.current) {
+            el.className = 'on';
+        } else {
+            el.onclick = (function(i) {
+                return function() {
+                    pagination.gotoPage(i);
+                }
+            })(i);
+        }
+        fragment.appendChild(el);
+    }
+    paginationEl.appendChild(fragment);
+}// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+// 인포윈도우에 장소명을 표시합니다
+function displayInfowindow(marker, title) {
+    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+    infowindow.setContent(content);
+    infowindow.open(map, marker);
+} // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+function removeAllChildNods(el) {   
+    while (el.hasChildNodes()) {
+        el.removeChild (el.lastChild);
+    }
+}
+
+## profile.html -> 기술스택 영역 아래 아래 코드 삽입(지도 정보)
+<div id="map" style="width:800px;height:400px;"></div>
+
+## profile.html-> map.js연동한 코드
+LIB 추가: clusterer: 마커용 클러스터러 라이브러리, services: 장소 검색과 주소 좌표 전환, draing: 지도 위 그래픽스 객체 드로잉
+profile.css 생성 후 연동
+&libraries=services,clusterer,drawing 추가 
+
+## profile.html-> 아래 코드 추가(검색창)
+<div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+아래 코드 추가
+<p style="color: rgb(228, 200, 176);"><em>지도를 클릭해주세요!</em></p>
+<div id="clickLatlng"></div>
+
+#  10주차 수업내용_모듈화, 회원가입
+
+## 모듈화
+원하는 html에서 login 제외 나머지 자바스크립트 연동 중지(여기서는 login.html)
+login.html -> <script type=“module” src=“../js/login.js” defer></script> //자바스크립트 통합 관리
+
+login.js -> 최상위에 아래 코드 추가
+import { session_set, session_get, session_check } from ‘./session.js’;
+import { encrypt_text, decrypt_text } from ‘./crypto.js’;
+import { generateJWT, checkAuth } from ‘./jwt_token.js’;
+
+login.html-> <body> 태그에서 onload=“init();” 지우기
+login.js -> init() 함수 아래에 아래코드 추가 (login.html <body>태그 내 onload 지워서)
+document.addEventListener(‘DOMContentLoaded’, () => {
+  init();
+});
+
+session, crypto, jwt_token에서 import 해야할 함수 앞에 export 추가
+
+
+session.js -> 최상위에 아래 코드 추가 (여기도 함수가 쓰여서)
+import { encrypt_text, decrypt_text } from './crypto.js';
+
+cypto.js -> 최상위에 아래 코드 추가 (여기도 함수가 쓰여서)
+import { session_set, session_get, session_check } from './session.js';
+decodeByAES256,encrypt_text -> this 지우기
+
+login2.js 생성 -> index_login.html 에 추가 (body 없애기)
+document.addEventListener(‘DOMContentLoaded’,()=>{
+    checkAuth();
+    init_logined();
+});
+로 수정
+
+## 회원가입 기능
+join.js
+import { session_set2 } from './session.js';
+function join(){ // 회원가입기능
+    const nameRegex = /^[가-힣]+$/; //한글만 허용
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //올바른 이메일 형식
+    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/; //비번이 8자이상,대소문자숫자 특문 포함
+    let form = document.querySelector("#join_form"); // 로그인폼식별자
+    let name = document.querySelector("#form3Example1c");
+    let email = document.querySelector("#form3Example3c");
+    let password = document.querySelector("#form3Example4c");
+    let re_password= document.querySelector("#form3Example4cd");
+    let agree = document.querySelector("#form2Example3c"); //여기까지 DOM요소 가져오기
+    form.action= "../index.html"; // 로그인성공시이동
+    form.method= "get"; // 전송방식
+    if(name.value.length=== 0 || email.value.length=== 0 || password.value.length=== 0 || re_password.length=== 0){ //하나라도 비어있다면
+        alert("회원가입폼에모든정보를입력해주세요.");
+    }
+    if (!nameRegex.test(name.value)) { // 이름에 한글이 없다면
+        alert("이름은 한글만 입력 가능합니다.");
+        name.focus();
+    return;
+    }
+    if (!emailRegex.test(email.value)) { // 이메일 검사
+        alert("이메일 형식이 올바르지 않습니다.");
+        email.focus();
+        return;
+
+    if (!pwRegex.test(password.value)) { // 비밀번호 검사
+        alert("비밀번호는 8자 이상이며 대소문자, 숫자, 특수문자를 모두 포함해야 합니다.");
+        password.focus();
+        return;
+    }
+
+        alert("비밀번호가 일치하지 않습니다.");
+        re_password.focus();
+        return;
+    }
+
+    if (!agree.checked) { // 약관 동의 확인
+        alert("약관에 동의하셔야 가입이 가능합니다.");
+        return;
+    }
+    else{
+        const newSignUp = new SignUp(name.value, email.value, password.value, re_password.value); // 회원가입정보객체생성
+
+        session_set2(newSignUp); // 세션저장및객체전달
+        form.submit(); // 폼실행
+    }
+
+document.getElementById("join_btn").addEventListener('click', join); // 이벤트리스너
+class SignUp {
+        constructor(name, email, password, re_password) {
+        // 생성자 함수: 객체 생성 시 회원 정보 초기화
+            this._name = name;
+            this._email = email;
+            this._password = password;
+            this._re_password = re_password;
+    }
+        // 전체 회원 정보를 한 번에 설정하는 함수
+        setUserInfo(name, email, password, re_password) {
+            this._name = name;
+            this._email = email;
+            this._password = password;
+            this._re_password = re_password;
+        }
+        // 전체 회원 정보를 한 번에 가져오는 함수
+        getUserInfo() {
+            return {
+                name: this._name,
+                email: this._email,
+                password: this._password,
+                re_password: this._re_password
+            };
+        }
+}Add comment
+
+#  11주차 응용 문제_프로필용 정보 수정
+
+<!DOCTYPE html>
+<html lang="ko"> <!--한국어어-->
+<html>
+<head>
+    <meta charset="UTF-8"><!--문자 인코딩 유니코드--><title>포트폴리오</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="20210968"> <!--작성자를 명시하여 누가 작성했는지지-->
+    <meta name="keywords" content="computer"> <!--검색 시 이 문서가 검색될 가능성 높아짐짐-->
+    <base href="http://127.0.0.1:5500"> <!--상대경로 사용 시 기준이 되는 기본 url 경로-->
+    <style>
+        table {
+            font-size: 15pt;
+            color:#3a352f
+        }
+        .custom-navbar {
+            background-color: rgb(191, 191, 191);
+            color:#3a352f
+        }
+
+        .custom-rounded {
+            border-radius: 10px; /* 둥근 정도를 조정 */
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script type="text/javascript" src="../js/map.js" defer></script>Add commentMore actions
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=726a25554233e017f3ea7f3115266c5e&libraries=services,clusterer,drawing"></script>
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+    <body style="background-color: #3a352f;" > <!--내용은 body부터라서 여기에 배경style넣는듯-->
+        <nav class="navbar navbar-expand-lg custom-navbar" >
+            <div class="container-fluid ">
+              <nav class="navbar bg-body-tertiary ">
+                <div class="container-fluid" style="background-color: #3a352f;">
+                  <a class="navbar-brand"  >
+                    <img src="image/icon.png" alt="Logo" width="40" height="30" class="d-inline-block align-text-top">
+                  </a>
+                </div>
+              </nav>
+              <a class="navbar-brand" >카테고리</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500">메인페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/eslionekim?tab=repositories">깃허브 주소</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      프로젝트
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="https://github.com/orgs/sku-likelion11th/teams/hackathon-team1">멋쟁이 사자처럼</a></li>
+                      <li><a class="dropdown-item" href="https://github.com/tjdalsquf8/PIU">졸업작품</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <nav class="navbar bg-body-tertiary">
+                  <div class="container-fluid">
+                    <a class="navbar-brand">Navbar</a>
+                    <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                      <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                      <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                      <a href="login/login.html" class="btn btn-outline-success" id="login_btn">로그인 하기</a>
+                    </form>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </nav>
+          <section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-12 col-xl-4">
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body text-center">
+            <div class="mt-3 mb-4">
+              <img src="/image/face.png"
+                class="custom-rounded img-fluid" style="width: 100px;" />
+            </div>
+            <h4 class="mb-4">KIM EUNSEO</h4>
+            <button type="button" style="margin-bottom: 50px;" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg" onclick="alert('관심 가져주셔서 감사합니다\n편하신 시간대에 연락 바랍니다. \n\n이메일: kimdmstj0510@naver.com')">
+              Contact
+            </button>
+            <p class="text-muted ">GitHub shortcut <span class="mx-2">|</span> <a href="https://github.com/eslionekim?tab=repositories">github</a></p>
+            <p class="text-muted ">Backend Programmer <span class="mx-2">|</span> job</p>
+            <p class="text-muted mb-4">Suwon-si, Gyeonggi-do <span class="mx-2">|</span> address</p>
+            <div class="mb-4 pb-2">
+              
+            </div>
+            
+            <div class="d-flex justify-content-between text-center mb-2">
+              <div>
+                <p class="mb-2 h5">language</p>
+                <p class="text-muted mb-0">Python</p>
+                <p class="text-muted mb-0">java</p>
+                <p class="text-muted mb-0">C++</p>
+              </div>
+              <div class="px-3">
+                <p class="mb-2 h5">framework</p>
+                <p class="text-muted mb-0">Django</p>
+                <p class="text-muted mb-0">Unity</p>
+              </div>
+              <div>
+                <p class="mb-2 h5">license</p>
+                <p class="text-muted mb-0">sqld</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="map_wrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">Add commentMore actions
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+    </div>
+        <div id="map"></div>
+        <p style="color: rgb(228, 200, 176);"><em>지도를 클릭해주세요!</em></p>
+        <div id="clickLatlng"></div>
+      </div>
+
+    </div>
+    
+  </div>
+</section>
+    </body>
+</html>
+
+# 11주차 응용 문제_프로필 페이지 접근제한하기
+
+## 프로필 가는 버튼에 이벤트 리스너를 추가한 후, 세션이 존재하면 프로필 페이지, 세션이 존재하지 않으면 메인 페이지로 이동하도록 구현
+## popup.js 아래 코드 추가
+document.getElementById("profileBtn").addEventListener("click", function () {
+    if (sessionStorage.getItem("Session_Storage_id")) {
+        // 세션이 존재하면 프로필 페이지로 이동
+        window.location.href = "login/profile.html";
+    } else {
+        // 세션이 없으면 경고 후 메인 페이지로 이동
+        alert("로그인이 필요합니다.");
+        window.location.href = "../index.html"; // 메인 페이지 경로
+    }
+});
+## index_login.html
+id profileBtn으로 수정
+
+# 11주차 응용 문제_좌표로 주소 출력하기
+
+## map.js 아래 코드 추가
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+}), infowindow = new kakao.maps.InfoWindow({zindex:1});;
+var geocoder = new kakao.maps.services.Geocoder();
+// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+            
+            var content = '<div class="bAddr">' +
+                            '<span class="title">법정동 주소정보</span>' + 
+                            detailAddr + 
+                        '</div>';
+            // 마커를 클릭한 위치에 표시합니다 
+            marker.setPosition(mouseEvent.latLng);
+            marker.setMap(map);
+            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+        }   
+    });
+    // 클릭한 위도, 경도 정보를 가져옵니다 
+    var latlng = mouseEvent.latLng;
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    marker.setPosition(latlng);
+    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    var resultDiv = document.getElementById('clickLatlng');
+    resultDiv.innerHTML = message;
+});
+
+// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'idle', function() {
+    searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+});
+
+function searchAddrFromCoords(coords, callback) {
+    // 좌표로 행정동 주소 정보를 요청합니다
+    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+}
+function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+}
+// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+function displayCenterInfo(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+        var infoDiv = document.getElementById('centerAddr');
+        for(var i = 0; i < result.length; i++) {
+            // 행정동의 region_type 값은 'H' 이므로
+            if (result[i].region_type === 'H') {
+                infoDiv.innerHTML = result[i].address_name;
+                break;Add commentMore actions
+            }
+        }
+    }
+}  
+## profile.html 아래 코드 추가
+.map_wrap {position:relative;width:100%;height:350px;}
+.title {font-weight:bold;display:block;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#centerAddr {display:block;margin-top:2px;font-weight: normal;}
+.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+    
+<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+    <div class="hAddr">
+        <span class="title">지도중심기준 행정동 주소정보</span>
+        <span id="centerAddr"></span>
+    </div>
+</div>
+
+# 최종 페이지 꾸미기
+
+## 포트폴리오pdf 생성
+/pdf/KIM_EUNSEO_Potpolio.pdf 생성
+
+## 메인페이지 카테고리 재정렬Add commentMore actions
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/login/index_login.html">메인페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="login/profile.html" target='_blank' >기본정보(프로필)</a>
+                  </li> 
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      프로젝트
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="nav-link" href="./login/potpolio.html">포트폴리오</a></li>
+                      <li><a class="nav-link" href="https://github.com/eslionekim?tab=repositories" target="_blank">깃허브 주소</a></li>
+                    </ul>
+                  </li>
+                </ul>
+                <nav class="navbar bg-body-tertiary">
+                  <div class="container-fluid">
+                    <a class="navbar-brand">Navbar</a>
+                    <form class="d-flex" role="search" onsubmit="return googleSearch();">
+                      <input class="form-control me-2" id="search_input" name="q" type="search" placeholder="키워드 입력" aria-label="Search">
+                      <button class="btn btn-outline-success" id="search_btn" type="submit">검색하기</button>
+                      <a href="login/logout.html" class="btn btn-outline-success">로그아웃 하기</a>
+                    </form>
+                  </div>
+                </nav>
+              </div>
+
+## 비회원 메인페이지는 포트폴리오 다운로드 못하게 막기
+onclick="alert('로그인을 하시면 이용하실 수 있습니다.');“
+
+## potpolio.html
+id downloadBtn로 넣기
+
+## potpolio.js 
+function potpolioBtn() {
+    if (sessionStorage.getItem("Session_Storage_id")) {
+        const link = document.createElement("a");
+        link.href = "./pdf/KIM_EUNSEO_Potpolio.pdf";
+        link.download = "KIM_EUNSEO_Potpolio.pdf";
+        link.click();
+    } else {
+        alert("로그인이 필요합니다.");
+        window.location.href = "../index.html";
+    }
+}document.getElementById("downloadBtn").addEventListener("click", potpolioBtn);
+
+# 오류 수정
+
+## profile.html (css 위치 수정하기)
         .map_wrap {
             width: 100%;
             height: 100%;
@@ -18,25 +1523,31 @@
             text-align: center;
             z-index: 1000; /* 지도보다 위로 보이도록 설정 */
         }
-
         .title {
             font-weight: bold;
             display: block;
             margin-bottom: 5px;
         }#centerAddr {display:block;margin-top:2px;font-weight: normal;}
         .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-    
+
 우측 하단으로 이동 성공
 
-# 페이지 간 이동 시 target="_blank" 지워 한 탭 내에서 해결
+## 페이지 간 이동 시 target="_blank" 지워 한 탭 내에서 해결
 깃허브 바로가기 기능은 새 탭으로 유지
 
-# portpolio.html로 이동 방안
+## portpolio.html로 이동 방안Add commentMore actions
 기존의 id에 이벤트 리스너로 가는 방안 대신 
 onload를 통해 해당 페이지로 이동했을 때 세션이 있을 경우 페이지에 접속 허용,
 세션이 없을 경우 index.html로 유도
 
-# index.html , index_login.html 수정
+#  오류 수정 및 페이지 꾸미기 최최종
+
+## portpolio.html로 이동 방안
+기존의 id에 이벤트 리스너로 가는 방안 대신 
+onload를 통해 해당 페이지로 이동했을 때 세션이 있을 경우 페이지에 접속 허용,
+세션이 없을 경우 index.html로 유도Add commentMore actions
+
+## index.html , index_login.html 디자인 수정
         .table {
             border-collapse: collapse;
             width: 80%; /* 테이블의 전체 너비를 80%로 제한 */
@@ -47,69 +1558,55 @@ onload를 통해 해당 페이지로 이동했을 때 세션이 있을 경우 �
             border-radius: 12px;
             overflow: hidden;
         }
-
         .table caption {
             text-align: left;
             font-weight: bold;
             font-size: 1.5em;
             margin-bottom: 10px;
         }
-
         .table thead tr {
             background-color: #4CAF50;
             color: white;
         }
-
         .table td, .table th {
             padding: 12px 20px;
             text-align: center;
             word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
         }
-
         .table td {
             background-color: #f9f9f9;
             color: #333;
         }
-
         .table tr:nth-child(even) td {
             background-color: #f9f9f9; /* 모든 줄 배경색을 동일하게 설정 */
         }
-
         .table tr:nth-child(odd) td {
             background-color: #f9f9f9; /* 모든 줄 배경색을 동일하게 설정 */
         }
-
         .table tr:hover td {
             background-color: #ddd;
         }
-
         .table td img {
             vertical-align: middle;
             margin-right: 5px;
         }
-
         .table td a {
             text-decoration: none;
             color: #007BFF;
             font-weight: bold;
         }
-
         .table td a:hover {
             text-decoration: underline;
         }
-
         .table thead td {
             border-bottom: 2px solid white;
         }
-
         .table td:first-child, .table th:first-child {
             border-radius: 8px 0 0 8px;
         }
-
         .table td:last-child, .table th:last-child {
             border-radius: 0 8px 8px 0;
         }
-
             <table border="1" class="table">
                 <caption>기술 스택</caption>
                 <thead>
@@ -137,4 +1634,18 @@ onload를 통해 해당 페이지로 이동했을 때 세션이 있을 경우 �
                       <td colspan="3"><img src="image/github.png" width="20" height="20"><a href="https://github.com/eslionekim/Eunseo" target="_blank">깃허브 바로가기</a></td>
                     </tr>
                 </tbody>
-            </table>        
+            </table> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
